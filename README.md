@@ -289,10 +289,28 @@ v0.3.0 已 ship——方法论内化重构完成，鲁班独立运行。完整�
 
 ---
 
+## 致谢与参考
+
+luban 不是凭空长出来的。下面这些工作各自解决了"如何把一个角色/人格/专业能力工程化"的一部分,luban 站在它们的肩膀上,选了一条不同的路径(蒸馏 sub-specialty 的方法论,不是蒸馏个人 / 不做 persona portability)。
+
+- **人格化思路 —— [DeepPersona: A Generative Engine for Scaling Deep Synthetic Personas](https://arxiv.org/abs/2511.07338)** (Wang et al., 2025)
+  taxonomy-first + progressive specification 的两阶段框架。luban 的 Stage 1 "Capability Taxonomy Mining" → Stage 3 "Progressive Specification (5:3:2 sampling)" 与之同源,差异在 luban 拒绝 LLM 凭空生成 taxonomy,要求由 critique corpora 反推。
+
+- **蒸馏启发 —— [Nuwa-skill](https://github.com/alchaincyf/nuwa-skill)** (alchaincyf)
+  把"蒸馏一个具体的人"做到了工程级别,验证了 distillation-as-skill 可行。luban 是它的正交补集:Nuwa 蒸馏个人 mental model,luban 蒸馏 sub-specialty 的方法论。两个项目的分工在 [SKILL.md §6](.claude/skills/luban-skill/SKILL.md) 有明确边界。
+
+- **SOUL 结构 —— [soul-protocol](https://github.com/qbtrix/soul-protocol)** (qbtrix)
+  完整的 portable AI identity 规范(身份元数据 / OCEAN 人格 / 五层记忆 / 状态管理 / .soul 归档格式)。luban 的 `SOUL.md` 是它的极简子集——只保留"人格 / 语气 / stance"三件,不做 memory / portability / state,因为 luban 的关切是"专业判断",portability 不在主线。
+
+- **SOUL 方法 —— [OpenClaw `SOUL.md` 概念](https://docs.openclaw.ai/concepts/soul)**
+  "Where your agent's voice lives"——SOUL.md 作为人格层独立文件的定位由它确立。luban 直接采用此定位,并把它与 capability layer (SKILL.md) / identity layer (identity.json) 严格分开。
+
+另外,立场 1-7 的概念骨架还借鉴了 Anthropic 内部研究方向 expert-persona-synthesis,详情见上方[方法论血统](#方法论血统)小节。
+
+如果你的工作和 luban 相关、想被列入此处,欢迎开 issue。
+
+---
+
 ## License
 
 MIT
-
-## Authors
-
-[TODO]
