@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/luban-skill/luban-skill/schemas/identity-v0.2.json",
+  "title": "luban-skill Expert Persona Identity",
+  "description": "A generated expert persona's identity record. Lives at <role-slug>/identity.json in the generated role directory.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "did",
+    "name",
+    "version",
+    "created_at",
+    "domain_family",
+    "sub_specialty",
+    "generation_mode",
+    "vibes_risk",
+    "anchors",
+    "values",
+    "honest_limits",
+    "luban_version"
+  ],
+  "properties": {
+    "did": {
+      "type": "string",
+      "pattern": "^expert:[a-z0-9][a-z0-9-]*[a-z0-9]$",
+      "description": "Stable persona identifier. Format: 'expert:<slug>'. Must remain stable across evolution iterations and re-exports. Slug uses lowercase, digits, and hyphens; no leading/trailing hyphen."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable display name. Free text. Should reflect the sub-specialty (e.g., 'Senior B2B SaaS Design Director'), not a generic title ('Designer')."
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Persona version, semantic versioning. Starts at '0.1.0' on initial generation. Incremented when evolution.jsonl entries trigger material changes."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp with timezone offset. Records when this persona was first generated."
+    },
+    "domain_family": {
+      "type": "string",
+      "description": "Which family this persona belongs to. Values: 'legal', 'engineering', 'finance', 'product_growth_design', 'clinical_diagnostic', or a cross-family combination using ' + ' separator (e.g., 'legal + product_growth_design'). For uncovered domains, use 'custom:<user-defined-slug>'."
+    },
+    "sub_specialty": {
+      "type": "string",
+      "minLength": 1,
+      "description": "REQUIRED. The narrowed-down specialty. Must not be the family name itself. Per luban methodology (generation-protocol §0 stance 3), generic seniority labels are forbidden ('senior designer' is not a sub-specialty; 'B2B SaaS UX designer with brand systems experience' is)."
+    },
+    "generation_mode": {
+      "type": "string",
+      "enum": ["seeded", "weak-seeded", "zero-shot"],
+      "description": "How this persona was generated. seeded = at least 1 high-signal source (critique corpora / interview banks / standards docs). weak-seeded = only low-signal sources (failure cases / blogs). zero-shot = no user-provided seeds; persona derived from model priors only. zero-shot violates luban §0 stances 1-2 and is marked as such."
+    },
+    "vibes_risk": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Honest assessment of how close this persona is to the 'vibes persona' failure mode (LinkedIn-copy stereotype reproduction). low = seeded mode with 2+ high-signal sources. medium = weak-seeded OR seeded with only 1 high-signal source. high = zero-shot. Always present, never optional."
+    },
+    "anchors": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "5-8 opinionated anchors that fix the persona's stable identity. Per luban Stage 2: must include sub-specialty, seniority signal (NOT years of experience), philosophy/school of thought, industry context, tool/method stack, operating constraints held sacred. Anchors must be opinionated — any anchor every expert would agree with is not an anchor."
+    },
+    "values": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "3-5 core values. Free-text strings. Distinct from anchors: values are what the persona prioritizes (e.g., 'accessibility is non-negotiable', 'evidence over intuition'); anchors include those plus other identity facets (seniority signal, philosophy, etc.)."
+    },
+    "honest_limits": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "REQUIRED. 3+ explicit honest limits — things this persona genuinely cannot do, easily gets wrong, or should defer to other roles for. Per Nuwa: a skill that does not declare its limits is not worth trusting. zero-shot personas must include a limit acknowledging unverified provenance."
+    },
+    "seed_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "reference"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "critique_corpora",
+              "interview_bank",
+              "standards_doc",
+              "failure_cases",
+              "practitioner_blog",
+              "user_provided_doc",
+              "user_named_practitioner"
+            ],
+            "description": "Source category, ranked by signal density per luban §0 stance 4. critique_corpora is highest signal; practitioner_blog is lowest."
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Concrete identifier of the source. URL, filename, or specific reference (e.g., 'https://github.com/facebook/react/pulls?q=reviewed-by%3Asebmarkbage'). Generic descriptions are not allowed ('design review records' fails; 'Material Design 3 critique threads on Twitter, 2024-2025' passes)."
+          },
+          "verified": {
+            "type": "boolean",
+            "description": "Whether luban successfully fetched and parsed this source. false means the source was named but not processed."
+          }
+        }
+      },
+      "description": "List of seed materials used in generation. Empty array is valid only when generation_mode = zero-shot. Each entry must reference a concrete, locatable source."
+    },
+    "luban_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Version of luban-skill that generated this persona. Allows future versions to detect schema drift and offer migrations."
+    }
+  }
+}
