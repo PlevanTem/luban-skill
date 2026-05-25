@@ -104,7 +104,7 @@
 
 ### 方法论血统
 
-立场 1-7 的概念骨架来自 expert-persona-synthesis（Anthropic 内部研究方向）的吸收消化，加上鲁班在族骨架、SOUL 层、evolution 协议、种子勘探模式上的扩展。v0.3.0 起方法论已**内化为鲁班自身**——不再要求用户先安装 expert-persona-synthesis，鲁班独立运行。
+立场 1-7 的概念骨架在本项目 v0.2.x 阶段曾以独立命名 `expert-persona-synthesis` (EPS) 存在，作为 luban 的外部依赖。v0.3.0 把这套骨架**内化为鲁班自身**，并在族骨架、SOUL 层、evolution 协议、种子勘探模式上扩展；不再需要外挂任何前置依赖，鲁班独立运行。CHANGELOG 与 ARCHITECTURE_v0.2.md 里保留了 EPS 的历史名字，作为该次重构的来源记录。
 
 ### 蒸馏流程（5 阶段流水线）
 
@@ -304,8 +304,6 @@ luban 不是凭空长出来的。下面这些工作各自解决了"如何把一�
 
 - **SOUL 方法 —— [OpenClaw `SOUL.md` 概念](https://docs.openclaw.ai/concepts/soul)**
   "Where your agent's voice lives"——SOUL.md 作为人格层独立文件的定位由它确立。luban 直接采用此定位,并把它与 capability layer (SKILL.md) / identity layer (identity.json) 严格分开。
-
-另外,立场 1-7 的概念骨架还借鉴了 Anthropic 内部研究方向 expert-persona-synthesis,详情见上方[方法论血统](#方法论血统)小节。
 
 如果你的工作和 luban 相关、想被列入此处,欢迎开 issue。
 
