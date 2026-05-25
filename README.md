@@ -28,7 +28,7 @@
 
 ## 快速开始
 
-1. **安装 skill** —— 把 `luban-skill/` 目录拷贝到你的 Claude Code skills 路径下（通常是 `~/.claude/skills/` 或项目内 `.claude/skills/`）。
+1. **安装 skill** —— 本仓库本身就是 dogfood 布局：进入本仓库时，Claude Code 会自动从 `.claude/skills/luban-skill/` 加载。要装到全局自用，把 `.claude/skills/luban-skill/` 整目录复制到 `~/.claude/skills/luban-skill/` 即可。
 2. **在 Claude Code 里召唤鲁班**（必须显式说出 "luban" 或 "鲁班"，不会被泛触发劫持）：
 
    ```
@@ -90,7 +90,7 @@
 
 ### luban 的 7 条核心立场
 
-完整定义在 [`luban-skill/references/generation-protocol.md` §0](luban-skill/references/generation-protocol.md)。摘要：
+完整定义在 [`.claude/skills/luban-skill/references/generation-protocol.md` §0](.claude/skills/luban-skill/references/generation-protocol.md)。摘要：
 
 1. **拒绝 vibes persona**：禁止 "You are a world-class designer with 20 years of experience" 这类描述性 prompt——产出像 LinkedIn 简介，没有真判断。
 2. **拒绝 LLM 凭空生成**：禁止让 LLM "describe an expert X" 来生成 capability——这是 stereotype 再生产，是大多数 "AI 专家角色" 项目的根本失败。
@@ -226,7 +226,7 @@
 
 ## 项目结构
 
-仓库根目录（人类读文档 + 许可证）与 **Claude Code 可安装的 skill 目录** `luban-skill/` 分离：
+本仓库本身就是一个可被 Claude Code 项目级加载的 dogfood 布局——skill 包放在 `.claude/skills/luban-skill/`，进入本仓库时 Claude Code 自动发现。要装到全局自用，复制该目录到 `~/.claude/skills/luban-skill/`。
 
 ```
 ./
@@ -236,19 +236,21 @@
 ├── ARCHITECTURE_v0.2.md              # 架构决策稿（D1-D10 + 各批次产出 + v0.3.0 内化记录）
 ├── examples/                         # [v0.4] 计划：端到端示例
 │   └── design-director-b2b-saas/
-└── luban-skill/                      # 安装到 Claude Code 的 skill 包根目录
-    ├── SKILL.md                      # luban 元工具入口
-    └── references/
-        ├── generation-protocol.md    # 主生成流程（§0 7 立场 + §1-§15）
-        ├── domain-families.md        # 5 个领域族骨架
-        ├── evolution-protocol.md     # 半自动迭代流程
-        ├── seed-prospect-protocol.md # 种子勘探报告格式
-        ├── identity-schema.json      # identity.json 的 JSON Schema
-        ├── soul-template.md          # SOUL.md 可选脚手架
-        ├── skill-template.md         # 角色 SKILL.md 可选脚手架
-        ├── capability-map-template.md
-        ├── critique-rubric-template.md
-        └── anti-patterns-template.md
+└── .claude/
+    └── skills/
+        └── luban-skill/              # skill 包根目录（项目级自动加载）
+            ├── SKILL.md              # luban 元工具入口
+            └── references/
+                ├── generation-protocol.md    # 主生成流程（§0 7 立场 + §1-§15）
+                ├── domain-families.md        # 5 个领域族骨架
+                ├── evolution-protocol.md     # 半自动迭代流程
+                ├── seed-prospect-protocol.md # 种子勘探报告格式
+                ├── identity-schema.json      # identity.json 的 JSON Schema
+                ├── soul-template.md          # SOUL.md 可选脚手架
+                ├── skill-template.md         # 角色 SKILL.md 可选脚手架
+                ├── capability-map-template.md
+                ├── critique-rubric-template.md
+                └── anti-patterns-template.md
 ```
 
 所有 `*-template.md` 是**可选脚手架**，不是强制模板。

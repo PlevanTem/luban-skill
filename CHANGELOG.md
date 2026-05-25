@@ -6,10 +6,16 @@
 
 ## [Unreleased]
 
-### 文档与路径
+### 仓库布局变更（dogfood）
 
-- **仓库布局**：可安装的 Claude Code skill 位于 `luban-skill/`（内含 `SKILL.md` 与 `references/`）；`README.md`、`CHANGELOG.md`、`LICENSE`、`ARCHITECTURE_v0.2.md` 在仓库根目录。下文历史条目里写的「项目根 `SKILL.md`」或裸路径 `references/...`，均指 **skill 包内**路径（即 `luban-skill/` 下），除非另起一行明确写「仓库根」。
-- **超链接**：根目录 `README.md` 指向主流程的链接已改为 `luban-skill/references/generation-protocol.md`，避免相对路径解析到不存在的仓库根 `references/`。
+- **skill 包迁移**：`luban-skill/` → `.claude/skills/luban-skill/`。本仓库本身变成可被 Claude Code 项目级自动加载的 dogfood 布局，进入本仓库即可直接召唤鲁班；要装到全局自用，复制 `.claude/skills/luban-skill/` 到 `~/.claude/skills/luban-skill/` 即可。
+- **不影响 skill 内部**：`SKILL.md` 与 `references/` 之间使用相对路径，整目录搬迁后内部相对关系不变，`SKILL.md` 无需修改。
+- **README/ARCHITECTURE 同步**：仓库根的 `README.md` 项目结构与超链接、`ARCHITECTURE_v0.2.md` 路径勘误段均已更新指向新位置；ARCHITECTURE 中早期决策块内的结构树保留旧路径，作为决策时点的记录（已在勘误段显式说明）。
+
+### 文档与路径（v0.3.0 期间累计）
+
+- **仓库布局（v0.3.0）**：可安装的 Claude Code skill 位于 `luban-skill/`（内含 `SKILL.md` 与 `references/`）；`README.md`、`CHANGELOG.md`、`LICENSE`、`ARCHITECTURE_v0.2.md` 在仓库根目录。下文历史条目里写的「项目根 `SKILL.md`」或裸路径 `references/...`，均指 **skill 包内**路径（即 `luban-skill/` 下，现为 `.claude/skills/luban-skill/`），除非另起一行明确写「仓库根」。
+- **超链接**：根目录 `README.md` 指向主流程的链接已改为新位置 `.claude/skills/luban-skill/references/generation-protocol.md`。
 
 v0.4 计划：
 - `examples/design-director-b2b-saas/` 端到端示例

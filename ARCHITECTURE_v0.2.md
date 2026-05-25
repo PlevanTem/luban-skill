@@ -8,12 +8,12 @@
 
 ## 0. 当前事实清单
 
-> **路径勘误（相对本仓库）**：方法论与模板文件在 `luban-skill/references/`；`README.md` 等在仓库根。下文若仍写 `references/...` 而未加前缀，在审阅本稿时可一律理解为 `luban-skill/references/...`。
+> **路径勘误（相对本仓库）**：v0.3.1 起 skill 包已迁移至 `.claude/skills/luban-skill/`（dogfood 布局）。方法论与模板文件在 `.claude/skills/luban-skill/references/`；`README.md` 等在仓库根。下文若仍写 `references/...` 而未加前缀，可一律理解为 `.claude/skills/luban-skill/references/...`。本稿后续历史结构示意（§0 与 §4）保留写作时的旧路径 `luban-skill/...`，作为决策时点的记录。
 
 **已存在的文件**（825 行）：
 - `README.md`（仓库根）— 229 行 — 来源不明，我没在对话里创建它，但内容方向和 v2 一致
-- `luban-skill/references/generation-protocol.md` — 332 行 — 我 v2 重写
-- `luban-skill/references/domain-families.md` — 264 行 — 我 v2 重写
+- `.claude/skills/luban-skill/references/generation-protocol.md` — 332 行 — 我 v2 重写
+- `.claude/skills/luban-skill/references/domain-families.md` — 264 行 — 我 v2 重写
 
 **README 里"项目结构（计划）"声称要做的文件**（13 个，含已有的）：
 ```
