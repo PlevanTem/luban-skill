@@ -2,37 +2,135 @@
 
 > Nuwa 蒸馏人，鲁班蒸馏专业方法论。
 
+**把 "AI 扮演专家" 升级为 "AI 真的懂这个专业"。**
+
+鲁班帮你把任何一门手艺——B2B SaaS 产品经理、刑事辩护律师、并购财务顾问、UX 设计总监——蒸馏成一个 Claude Code Skill，让 AI 像在这行干了十年一样跟你对话：会挑刺、会拒绝、会讲 trade-off，而不是给你一段 LinkedIn 简介式的人设。
+
 [![Version: v0.3.0](https://img.shields.io/badge/version-v0.3.0-green)]()
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)]()
-
-**项目状态：v0.3.0 已 ship（方法论内化为自洽系统，可独立运行）。完整方法论文件包就绪，端到端示例 (v0.4) 在路上。**
-
----
-
-## 一句话定位
-
-`luban-skill` 是把"输入领域名 → 输出专业角色"这件事，**从'让 LLM 描述一个专家'升级为'按方法论蒸馏一个可被真专家承认的角色'**的 Claude Code skill。
-
-区别于蒸馏真人个人风格（ [Nuwa.女娲](https://github.com/alchaincyf/nuwa-skill) ），鲁班生成的角色，更专注面向专业场景的交付，包括**该专业的判断方法、能力清单、决策启发法、自检标准**。
+[![Skill: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)]()
 
 ---
 
-## 它和现有项目的关系
+## 效果对比
 
-| 项目 | 核心命题 | 数据源 |
+> 同样一句：「帮我 review 这份 B2B SaaS PRD」
+
+**❌ 普通 prompt / "扮演资深 PM" 人设**
+> *[占位：v0.4 端到端示例补齐后填入真实输出 —— 典型表现是泛泛而谈、套话、给出"看起来对"的建议，但抓不住该 sub-specialty 的真问题]*
+
+**✅ 用鲁班蒸馏的 `b2b-saas-pm` Skill**
+> *[占位：v0.4 端到端示例补齐后填入真实输出 —— 典型表现是先质疑 ICP 假设、要求看 ARR 拆解、对接口设计的 multi-tenant 影响逐条挑刺、明确拒绝某些场景说"这超出我判断范围"]*
+
+差距不来自"更好的 prompt"，来自鲁班把**该专业的 critique 标准、能力清单、决策启发法、自检 rubric** 都蒸馏进去了——详见 [工作原理](#工作原理)。
+
+---
+
+## 快速开始
+
+1. **安装 skill** —— 把 `luban-skill/` 目录拷贝到你的 Claude Code skills 路径下（通常是 `~/.claude/skills/` 或项目内 `.claude/skills/`）。
+2. **在 Claude Code 里召唤鲁班**（必须显式说出 "luban" 或 "鲁班"，不会被泛触发劫持）：
+
+   ```
+   用鲁班蒸馏一个 B2B SaaS PM 角色，我已经有 30 份 design review 实录
+   ```
+
+3. **没有种子材料？** 直接说：
+
+   ```
+   用鲁班帮我蒸馏一个刑事辩护律师，我手头什么都没有
+   ```
+
+   鲁班会进入**种子勘探模式**，给你一份"该 sub-specialty 的 critique corpora 候选清单"——告诉你去找什么、在哪找、按什么顺序找。
+
+4. **产物**：一个完整的角色目录（`SOUL.md` + `SKILL.md` + `identity.json` + capability map + critique rubric + anti-patterns + 诚实账单 `GENERATION_REPORT.md`）。装回 Claude Code 直接用。
+
+---
+
+## 鲁班能为你做什么
+
+- **你写 PRD**，想要一个真懂 B2B SaaS 的 PM 来挑刺，而不是 ChatGPT 套话。
+- **你做合规自查**，想要一个真做过这行的律师按 rubric 走，而不是"假装是律师"的 prompt。
+- **你设计组件库**，想要一个看过 500 个设计稿的 design director 给你做 critique，而不是"建议增加易用性"这种废话。
+- **你写商业计划书**，想找见过 200 个项目的投资人按真实标准挑问题。
+- **你做内部知识沉淀**，想把团队里某个 sub-specialty 的判断方法固化下来，而不是依赖某个具体的人还在不在。
+
+鲁班不取代该专业的人，**它把"判断该专业活儿做得好不好的标准"工程化为可执行的 Skill**。
+
+---
+
+## 已蒸馏的 Skill 示例
+
+| Sub-specialty | 状态 | 种子类型 |
 |---|---|---|
-| [Nuwa](https://github.com/alchaincyf/nuwa-skill) | 蒸馏具体真人的 mental model | 该真人的书 / 演讲 / 推特（GB 级单人语料） |
-| [OpenPersona](https://github.com/acnlabs/OpenPersona) | persona lifecycle（生成、约束、演化） | 用户自定义 |
-| 各种 soul.md (clawsouls / rokoss21 / aaronjmars) | AI agent 人格 portability | SOUL.md 文件标准化 |
-| **luban-skill** | **蒸馏专业方法论 + 强制 sub-specialty 锚定** | **该 sub-specialty 的 critique corpora（review 实录、标准文档、失败案例）** |
+| B2B SaaS Design Director | ⏸ v0.4 计划 | design review 实录 + 内部 rubric |
+| *[更多示例待社区贡献]* | — | — |
+
+> v0.3.0 ship 的是**元工具**（蒸馏方法论本身）。端到端示例在 v0.4，欢迎 PR 贡献你蒸馏出来的 sub-specialty。
+
+---
+
+## 和现有方案有什么不同
+
+| 方案 | 它解决什么 | 鲁班不一样的地方 |
+|---|---|---|
+| **普通 prompt / "扮演资深 X"** | 让 LLM 看起来像专家 | 鲁班拒绝 vibes persona——不是描述一个专家，是按方法论蒸馏 |
+| **[Nuwa](https://github.com/alchaincyf/nuwa-skill)** | 蒸馏具体真人 (Munger / Naval / Musk) 的 mental model | 鲁班不绑真人，蒸馏的是**该 sub-specialty 的方法论本身** |
+| **[OpenPersona](https://github.com/acnlabs/OpenPersona)** | persona 生命周期管理（生成、约束、演化） | 鲁班关心的是"专业判断怎么形成"，不是 persona 怎么 portable |
+| **soul.md 系列** (clawsouls / rokoss21 / aaronjmars) | AI agent 人格 portability | 同上，鲁班正交于人格层 |
+| **RAG / 向量库** | 给 LLM 外挂领域知识 | 鲁班蒸馏的是**判断标准 + 决策启发法 + 自检 rubric**，不是文档检索 |
 
 护城河在两件事：
-1. **强制 sub-specialty**：不接受"产品经理"这种泛输入，必须收敛到"B2B SaaS PM"级别
-2. **种子勘探模式**：用户没种子时，luban 主动产出"该 sub-specialty 的 critique corpora 候选清单"，让用户去找
+1. **强制 sub-specialty**——不接受"产品经理"这种泛输入，必须收敛到"B2B SaaS PM"级别
+2. **种子勘探模式**——用户没种子时，鲁班主动产出"该 sub-specialty 的 critique corpora 候选清单"，让用户去找
 
 ---
 
-## 方法论架构图
+## 工作原理
+
+### luban 的 7 条核心立场
+
+完整定义在 [`luban-skill/references/generation-protocol.md` §0](luban-skill/references/generation-protocol.md)。摘要：
+
+1. **拒绝 vibes persona**：禁止 "You are a world-class designer with 20 years of experience" 这类描述性 prompt——产出像 LinkedIn 简介，没有真判断。
+2. **拒绝 LLM 凭空生成**：禁止让 LLM "describe an expert X" 来生成 capability——这是 stereotype 再生产，是大多数 "AI 专家角色" 项目的根本失败。
+3. **强制 sub-specialty**："senior designer" 太宽，必须拆到 "B2B SaaS UX designer" 级别。
+4. **数据源按信号密度排序**：critique corpora > 面试题库 > 标准文档 > 失败案例 > 实践者博客。
+5. **三层加载**（Tier-1 always loaded / Tier-2 per task family / Tier-3 retrieval on demand）——不是把所有能力塞进 SKILL.md，而是按使用频率分层。
+6. **5:3:2 progressive sampling**：在 Tier-1 内部选 5 条核心、3 条邻接、2 条远端能力——对抗 LLM 的刻板印象再生产。
+7. **6-check validation 非选项**：内容质量 4 + 结构一致性 2，全过才算交付。
+
+**最容易引起分歧的是立场 2 和立场 7**——这两条把"快速生成体验"和"严肃方法论"放在了对立面。鲁班选择了后者。如果你的产品愿景是前者，鲁班不适合你。
+
+### 方法论血统
+
+立场 1-7 的概念骨架来自 expert-persona-synthesis（Anthropic 内部研究方向）的吸收消化，加上鲁班在族骨架、SOUL 层、evolution 协议、种子勘探模式上的扩展。v0.3.0 起方法论已**内化为鲁班自身**——不再要求用户先安装 expert-persona-synthesis，鲁班独立运行。
+
+### 蒸馏流程（5 阶段流水线）
+
+```
+输入领域 + sub-specialty + 种子
+    ↓
+[种子门槛检查] —— 零种子则进入勘探模式
+    ↓
+[Step 1] 领域族判定 → domain-families.md (5 族骨架)
+    ↓
+[Step 2] 5 Stage Pipeline:
+    1. Capability Taxonomy Mining       → capability-map.md
+    2. Anchor                           → identity.json
+    3. Progressive Specification (5:3:2)→ SKILL.md + clusters
+    4. Critique Rubric                  → critique-rubric.md
+    5. Tools & Workflow                 → 嵌入 SKILL.md
+    ↓
+[Step 3] 人格层 + 诚实账单 → SOUL.md + anti-patterns.md + evolution.jsonl
+    ↓
+[Step 4] 6 check validation (内容 4 + 结构 2)
+    ↓
+[Step 5] 交付目录 + GENERATION_REPORT.md
+```
+
+<details>
+<summary>展开完整架构图</summary>
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -122,29 +220,11 @@
    └──────────────────────────────────────────────────────────────┘
 ```
 
----
-
-## 方法论：luban 的 7 条核心立场
-
-完整定义在 [`luban-skill/references/generation-protocol.md` §0](luban-skill/references/generation-protocol.md)。摘要：
-
-1. **拒绝 vibes persona**：禁止"You are a world-class designer with 20 years of experience"这类描述性 prompt——产出读起来像 LinkedIn 简介，没有真判断
-2. **拒绝 LLM 凭空生成**：禁止让 LLM "describe an expert X" 来生成 capability——这是 stereotype 再生产，是大多数"AI 专家角色"项目的根本失败
-3. **强制 sub-specialty**："senior designer" 太宽，必须拆到 "B2B SaaS UX designer" 级别
-4. **数据源按信号密度排序**：critique corpora > 面试题库 > 标准文档 > 失败案例 > 实践者博客
-5. **三层加载**（Tier-1 always loaded / Tier-2 per task family / Tier-3 retrieval on demand）：不是把所有能力塞进 SKILL.md，而是按使用频率分层
-6. **5:3:2 progressive sampling**：在 Tier-1 内部选 5 条核心、3 条邻接、2 条远端能力——对抗 LLM 的刻板印象再生产
-7. **6-check validation 非选项**：内容质量 4 + 结构一致性 2，全过才算交付
-
-### 方法论血统
-
-立场 1-7 的概念骨架来自 expert-persona-synthesis（Anthropic 内部研究方向）的吸收消化，加上 luban 在族骨架、SOUL 层、evolution 协议、种子勘探模式上的扩展。v0.3.0 起方法论已**内化为 luban 自身**——不再要求用户先安装 expert-persona-synthesis，luban 独立运行。
-
-**最容易引起分歧的是立场 2（拒绝 LLM 凭空生成）和立场 7（validation 强度）**——这两条把"快速生成体验"和"严肃方法论"放在了对立面。luban 选择了后者。如果你的产品愿景是前者，luban 不适合你。
+</details>
 
 ---
 
-## 项目结构（v0.3.0）
+## 项目结构
 
 仓库根目录（人类读文档 + 许可证）与 **Claude Code 可安装的 skill 目录** `luban-skill/` 分离：
 
@@ -154,10 +234,10 @@
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # 版本历史
 ├── ARCHITECTURE_v0.2.md              # 架构决策稿（D1-D10 + 各批次产出 + v0.3.0 内化记录）
-├── examples/                         # [v0.4] 计划：端到端示例，当前目录可不存在
+├── examples/                         # [v0.4] 计划：端到端示例
 │   └── design-director-b2b-saas/
 └── luban-skill/                      # 安装到 Claude Code 的 skill 包根目录
-    ├── SKILL.md                      # luban 元工具入口（YAML + 触发条件 + 加载顺序）
+    ├── SKILL.md                      # luban 元工具入口
     └── references/
         ├── generation-protocol.md    # 主生成流程（§0 7 立场 + §1-§15）
         ├── domain-families.md        # 5 个领域族骨架
@@ -165,51 +245,26 @@
         ├── seed-prospect-protocol.md # 种子勘探报告格式
         ├── identity-schema.json      # identity.json 的 JSON Schema
         ├── soul-template.md          # SOUL.md 可选脚手架
-        ├── skill-template.md         # 角色 SKILL.md 可选脚手架（含 Anthropic 官方 YAML 规范）
+        ├── skill-template.md         # 角色 SKILL.md 可选脚手架
         ├── capability-map-template.md
         ├── critique-rubric-template.md
         └── anti-patterns-template.md
 ```
 
-**注**：所有 `*-template.md` 是**可选脚手架**，不是强制模板。生成时如果 sub-specialty 有特殊需求，可以完全自由组织。模板只是新用户的起点。
-
----
-
-## 当前进度
-
-**v0.3.0 已 ship**：方法论内化重构。luban 独立运行，不再外挂依赖 expert-persona-synthesis。
-
-| 文件 | 状态 | 备注 |
-|---|---|---|
-| `luban-skill/SKILL.md` | ✅ v0.3 | YAML frontmatter 第三人称、≤1024 字符、符合 Anthropic 官方规范 |
-| `README.md`（仓库根） | ✅ v0.3 | 含架构图、7 立场摘要、honest limits |
-| `LICENSE` | ✅ v0.2 | MIT |
-| `CHANGELOG.md` | ✅ v0.3 | v0.1.0 / v0.2.0 / v0.2.1 / v0.3.0 完整历史 |
-| `ARCHITECTURE_v0.2.md` | ✅ v0.3 | D1-D10 + 各批次附录 + v0.3.0 内化记录 |
-| `luban-skill/references/generation-protocol.md` | ✅ v0.3 | §0 重写为 luban 7 立场，§4-§13 内化无外部引用 |
-| `luban-skill/references/domain-families.md` | ✅ v0.2 | 5 族骨架 |
-| `luban-skill/references/identity-schema.json` | ✅ v0.3 | 删 depends_on 字段，描述去 EPS 引用 |
-| `luban-skill/references/evolution-protocol.md` | ✅ v0.2 | 半自动迭代 + fold 机制 |
-| `luban-skill/references/seed-prospect-protocol.md` | ✅ v0.2 | 零种子勘探规范 |
-| `luban-skill/references/soul-template.md` | ✅ v0.2 | 可选脚手架 |
-| `luban-skill/references/skill-template.md` | ✅ v0.3 | YAML 规范段按 Anthropic 官方重写 |
-| `luban-skill/references/capability-map-template.md` | ✅ v0.3 | 去 EPS Stage X 引用 |
-| `luban-skill/references/critique-rubric-template.md` | ✅ v0.3 | "EPS 通用层" → "通用层" |
-| `luban-skill/references/anti-patterns-template.md` | ✅ v0.2 | 唯一嵌反例模板 |
-| Design Director 示例 | ⏸ v0.4 | 端到端示例验证元框架 |
-
+所有 `*-template.md` 是**可选脚手架**，不是强制模板。
 
 ---
 
 ## Honest Limits（当前 v0.3.0）
 
-- **种子质量决定上限**：LinkedIn 文章作种子和 design review 实录作种子，产出的角色差距巨大。luban 无法补救坏种子。
+- **种子质量决定上限**：LinkedIn 文章作种子和 design review 实录作种子，产出的角色差距巨大。鲁班无法补救坏种子。
 - **快速演进领域（AI、加密、监管）需要持续更新种子**：v0.3.0 在 6 个月后可能就过时。
-- **Validation 必要非充分**：6 个 check 全过不代表角色一定有用。最终判断标准是"真专业人士用了之后说有用"，这条 luban 自己测不了。
+- **Validation 必要非充分**：6 个 check 全过不代表角色一定有用。最终判断标准是"真专业人士用了之后说有用"——这条鲁班自己测不了。
+- **端到端示例尚未 ship**：v0.3.0 是元工具完成态，第一个真实蒸馏案例（Design Director B2B SaaS）在 v0.4。
 
 ---
 
-## 立项动机（讲给社区听的版本）
+## 立项动机
 
 [colleague-skill](https://github.com/titanwings/colleague-skill) 证明了"蒸馏一个具体的人"可行。[Nuwa](https://github.com/alchaincyf/nuwa-skill) 把它推到极致——蒸馏 Munger、Naval、Musk 这类有海量公开语料的真人。
 
@@ -218,7 +273,7 @@
 蒸馏方法论的难点不在"如何让 LLM 扮演专家"——那是已知解决的问题，效果还很差（详见 generation-protocol §0 立场 1-2 对 vibes persona 的批判）。难点在两件事：
 
 1. **专业是怎么形成的**：是 critique corpora（不是博客）、标准文档（不是描述）、失败案例（不是成功故事）的累积
-2. **专业是怎么验证的**：是 6 个 check（A 组的 stereotype / critique / refusal / trade-off + B 组的 anchor consistency / 族特定 check）的全过，不是"我感觉它说得对"
+2. **专业是怎么验证的**：是 6 个 check（A 组 stereotype / critique / refusal / trade-off + B 组 anchor consistency / 族特定 check）的全过，不是"我感觉它说得对"
 
 `luban-skill` 把这两件事工程化为可执行的 protocol。
 
@@ -226,11 +281,15 @@
 
 ---
 
+## 当前进度 & Changelog
+
+v0.3.0 已 ship——方法论内化重构完成，鲁班独立运行。完整版本历史见 [CHANGELOG.md](CHANGELOG.md)，架构决策稿见 [ARCHITECTURE_v0.2.md](ARCHITECTURE_v0.2.md)。
+
+---
+
 ## License
 
 MIT
-
----
 
 ## Authors
 
