@@ -6,7 +6,7 @@
 
 鲁班帮你把任何一门手艺——B2B SaaS 产品经理、刑事辩护律师、并购财务顾问、UX 设计总监——蒸馏成一个 Claude Code Skill，让 AI 像在这行干了十年一样跟你对话：会挑刺、会拒绝、会讲 trade-off，而不是给你一段 LinkedIn 简介式的人设。
 
-[![Version: v0.3.0](https://img.shields.io/badge/version-v0.3.0-green)]()
+[![Version: v0.4.0](https://img.shields.io/badge/version-v0.4.0-green)]()
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)]()
 [![Skill: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)]()
 
@@ -14,15 +14,17 @@
 
 ## 效果对比
 
-> 同样一句：「帮我 review 这份 B2B SaaS PRD」
+> 同样一份糟糕的 PRD：「3 周内上线 AI 销售助手，用 LangChain 编排，自动回邮件 + 安排会议，目标 50% 销售邮件由 agent 自动处理」
 
-**❌ 普通 prompt / "扮演资深 PM" 人设**
-> *[占位：v0.4 端到端示例补齐后填入真实输出 —— 典型表现是泛泛而谈、套话、给出"看起来对"的建议，但抓不住该 sub-specialty 的真问题]*
+**❌ 普通 prompt / "扮演资深 AI PM" 人设**
+> "Great initiative! Consider adding a risk assessment section. Make sure to A/B test your email templates. Align with stakeholders before launch."
+>
+> *(典型 LinkedIn-bio 输出：客气、套话、看起来对但抓不到真问题)*
 
-**✅ 用鲁班蒸馏的 `b2b-saas-pm` Skill**
-> *[占位：v0.4 端到端示例补齐后填入真实输出 —— 典型表现是先质疑 ICP 假设、要求看 ARR 拆解、对接口设计的 multi-tenant 影响逐条挑刺、明确拒绝某些场景说"这超出我判断范围"]*
+**✅ 用鲁班蒸馏的 `/infra-pm` — Mira the PM（v0.4.0 实际输出）**
+> 这是 feature 罗列，不是 assumption-first。直接跳到 LangChain 编排违反 Anthropic Building Effective Agents 的核心立场：workflow 先于 agent。「50% 自动处理」是 capability metric，不是 product metric——客户拿到回复后的回复率才是。发邮件是不可逆操作，PRD 里没有 confirmation gate 或 sandbox 设计。3 周 + 没有 eval pipeline = eval theater。
 
-差距不来自"更好的 prompt"，来自鲁班把**该专业的 critique 标准、能力清单、决策启发法、自检 rubric** 都蒸馏进去了——详见 [工作原理](#工作原理)。
+差距不来自"更好的 prompt"——Mira 的 SOUL.md 默认拒绝 framework hype，critique-rubric 强制检查 "capability metric vs product metric" 区分，anti-patterns 把 "premature platform" / "eval theater" 写成了名字。**立场是结构性的，不靠 prompt 调音**——详见 [工作原理](#工作原理)。
 
 ---
 
@@ -43,7 +45,9 @@
 
    鲁班会进入**种子勘探模式**，给你一份"该 sub-specialty 的 critique corpora 候选清单"——告诉你去找什么、在哪找、按什么顺序找。
 
-4. **产物**：一个完整的角色目录（`SOUL.md` + `SKILL.md` + `identity.json` + capability map + critique rubric + anti-patterns + 诚实账单 `GENERATION_REPORT.md`）。装回 Claude Code 直接用。
+4. **产物**：一个完整的角色目录落到 `.claude/skills/<short-slug>/`（如 `infra-pm/`），含 `SOUL.md` + `SKILL.md` + `identity.json` + capability map + critique rubric + anti-patterns + 诚实账单 `GENERATION_REPORT.md`。Claude Code 自动发现，`/<short-slug>` 在浮动面板可见。
+
+5. **浏览已蒸馏的全部角色**：输入 `/agents`，结构化 roster 按 family 分组渲染。INDEX.md 由 luban 在每次生成新角色时自动维护。
 
 ---
 
@@ -61,12 +65,12 @@
 
 ## 已蒸馏的 Skill 示例
 
-| Sub-specialty | 状态 | 种子类型 |
-|---|---|---|
-| B2B SaaS Design Director | ⏸ v0.4 计划 | design review 实录 + 内部 rubric |
-| *[更多示例待社区贡献]* | — | — |
+| Sub-specialty | Slash | Display name | 状态 | 种子类型 | vibes_risk |
+|---|---|---|---|---|---|
+| Agent infrastructure PM (0→1 PMF) | `/infra-pm` | Mira the PM | ✅ v0.3.0 ship | Anthropic BEA + senior Platform PM JDs | medium |
+| *[更多示例待社区贡献]* | — | — | — | — | — |
 
-> v0.3.0 ship 的是**元工具**（蒸馏方法论本身）。端到端示例在 v0.4，欢迎 PR 贡献你蒸馏出来的 sub-specialty。
+> v0.4.0 把 v0.3.0 ship 的元工具方法论真的跑了一次 —— `infra-pm/` 就是用 luban 自己蒸馏出来的第一个角色。欢迎 PR 贡献你蒸馏出来的 sub-specialty。
 
 ---
 
@@ -222,43 +226,62 @@
 
 ## 项目结构
 
-本仓库本身就是一个可被 Claude Code 项目级加载的 dogfood 布局——skill 包放在 `.claude/skills/luban-skill/`，进入本仓库时 Claude Code 自动发现。要装到全局自用，复制该目录到 `~/.claude/skills/luban-skill/`。
+本仓库本身就是一个可被 Claude Code 项目级加载的 dogfood 布局——所有 skill 都在 `.claude/skills/` 下，Claude Code 自动发现。要装到全局自用，复制对应子目录到 `~/.claude/skills/`。
 
 ```
 ./
 ├── README.md                         # 本文件
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # 版本历史
-├── ARCHITECTURE_v0.2.md              # 架构决策稿（D1-D10 + 各批次产出 + v0.3.0 内化记录）
-├── examples/                         # [v0.4] 计划：端到端示例
-│   └── design-director-b2b-saas/
+├── ARCHITECTURE_v0.2.md              # 架构决策稿
 └── .claude/
-    └── skills/
-        └── luban-skill/              # skill 包根目录（项目级自动加载）
-            ├── SKILL.md              # luban 元工具入口
+    └── skills/                       # Claude Code 原生 skills 路径
+        ├── INDEX.md                  # 全部已蒸馏角色的注册表 (v0.4)
+        │
+        ├── luban-skill/              # 元工具（生成新角色）
+        │   ├── SKILL.md
+        │   └── references/
+        │       ├── generation-protocol.md     # 主生成流程（§0 7 立场 + §1-§15）
+        │       ├── domain-families.md         # 5 个领域族骨架
+        │       ├── evolution-protocol.md      # 半自动迭代流程
+        │       ├── seed-prospect-protocol.md  # 种子勘探报告格式
+        │       ├── identity-schema.json       # identity.json 的 JSON Schema
+        │       ├── soul-template.md           # SOUL.md 可选脚手架（9-section, v0.4）
+        │       ├── skill-template.md          # 角色 SKILL.md 可选脚手架
+        │       ├── capability-map-template.md
+        │       ├── critique-rubric-template.md
+        │       └── anti-patterns-template.md
+        │
+        ├── agents/                   # /agents meta-skill (v0.4 — 浏览全部已蒸馏角色)
+        │   └── SKILL.md
+        │
+        └── infra-pm/                 # 首个蒸馏角色：Mira the PM (v0.4)
+            ├── SKILL.md
+            ├── SOUL.md               # 9-section persona
+            ├── identity.json
+            ├── evolution.jsonl       # 3 条 v0.1→v0.3 演进记录
+            ├── GENERATION_REPORT.md  # 诚实账单
             └── references/
-                ├── generation-protocol.md    # 主生成流程（§0 7 立场 + §1-§15）
-                ├── domain-families.md        # 5 个领域族骨架
-                ├── evolution-protocol.md     # 半自动迭代流程
-                ├── seed-prospect-protocol.md # 种子勘探报告格式
-                ├── identity-schema.json      # identity.json 的 JSON Schema
-                ├── soul-template.md          # SOUL.md 可选脚手架
-                ├── skill-template.md         # 角色 SKILL.md 可选脚手架
-                ├── capability-map-template.md
-                ├── critique-rubric-template.md
-                └── anti-patterns-template.md
+                ├── capability-map.md
+                ├── capability-clusters.md
+                ├── critique-rubric.md
+                ├── anti-patterns.md
+                ├── retrieval-sources.md
+                ├── evolution-protocol.md
+                ├── corpora-candidates.md
+                └── source-material/  # 种子原文存档
 ```
 
 所有 `*-template.md` 是**可选脚手架**，不是强制模板。
 
 ---
 
-## Honest Limits（当前 v0.3.0）
+## Honest Limits（当前 v0.4.0）
 
 - **种子质量决定上限**：LinkedIn 文章作种子和 design review 实录作种子，产出的角色差距巨大。鲁班无法补救坏种子。
-- **快速演进领域（AI、加密、监管）需要持续更新种子**：v0.3.0 在 6 个月后可能就过时。
+- **快速演进领域（AI、加密、监管）需要持续更新种子**：v0.4.0 在 6 个月后可能就过时。
 - **Validation 必要非充分**：6 个 check 全过不代表角色一定有用。最终判断标准是"真专业人士用了之后说有用"——这条鲁班自己测不了。
-- **端到端示例尚未 ship**：v0.3.0 是元工具完成态，第一个真实蒸馏案例（Design Director B2B SaaS）在 v0.4。
+- **首个端到端示例 `infra-pm` 是 weak-seeded**：用的是 Anthropic 公开 BEA + 公开 PM JD，没有真正的 critique corpora（如 LangChain maintainer review reject 评论）。`vibes_risk: medium`。升级路径见 `.claude/skills/infra-pm/references/corpora-candidates.md`。
 
 ---
 
