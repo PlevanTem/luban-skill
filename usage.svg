@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 612" font-family="ui-sans-serif, system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <!-- ============================================================
+       luban-skill · 使用说明插图
+       3 panels: 你投料 → 鲁班蒸馏 → 你召唤
+       Distinctiveness vs intro.png: that is "what is luban" (apparatus),
+       this is "how do I use it" (user journey, subject = 你)
+       ============================================================ -->
+
+  <defs>
+    <style>
+      .title      { font-size: 28px; font-weight: 700; fill: #1A1A1A; }
+      .subtitle   { font-size: 14px; fill: #6B7280; }
+      .panel-h    { font-size: 22px; font-weight: 700; fill: #1A1A1A; }
+      .panel-sub  { font-size: 12px; fill: #6B7280; letter-spacing: 0.5px; }
+      .step-num   { font-size: 22px; font-weight: 700; fill: #FFFFFF; }
+      .row        { font-size: 15px; fill: #1A1A1A; }
+      .row-mono   { font-size: 14px; fill: #1A1A1A; font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace; }
+      .row-dim    { font-size: 13px; fill: #6B7280; }
+      .row-em     { font-size: 14px; fill: #1A1A1A; font-style: italic; }
+      .divider-t  { font-size: 12px; fill: #9CA3AF; letter-spacing: 2px; }
+      .footer-lbl { font-size: 13px; fill: #6B7280; }
+      .tagline    { font-size: 16px; fill: #1A1A1A; font-weight: 500; }
+      .term-cmd   { font-size: 14px; fill: #16A34A; font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace; }
+      .term-out   { font-size: 13px; fill: #E5E7EB; font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace; }
+      .term-name  { font-size: 13px; fill: #F59E0B; font-family: ui-monospace, 'JetBrains Mono', Menlo, Consolas, monospace; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="612" fill="#FAFAF7"/>
+
+  <!-- ====== Top title ====== -->
+  <text x="700" y="48" text-anchor="middle" class="title">鲁班 · 使用说明 · 3 步</text>
+  <text x="700" y="72" text-anchor="middle" class="subtitle">luban-skill · how to use</text>
+
+  <!-- ============================================================
+       PANEL 1 — 你投料 (green)
+       ============================================================ -->
+  <g transform="translate(30, 110)">
+    <!-- panel body -->
+    <rect x="0" y="0" width="400" height="430" rx="10" ry="10" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+    <!-- top accent band -->
+    <rect x="0" y="0" width="400" height="6" rx="3" ry="3" fill="#16A34A"/>
+
+    <!-- step circle -->
+    <circle cx="50" cy="58" r="22" fill="#16A34A"/>
+    <text x="50" y="66" text-anchor="middle" class="step-num">1</text>
+
+    <!-- title block -->
+    <text x="88" y="55" class="panel-h">你投料</text>
+    <text x="88" y="74" class="panel-sub">YOUR INPUTS</text>
+
+    <!-- doc rows -->
+    <g transform="translate(36, 120)">
+      <!-- row 1 -->
+      <g transform="translate(0, 0)">
+        <rect x="0" y="-12" width="14" height="18" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+        <polyline points="10,-12 14,-8 10,-8 10,-12" fill="#1A1A1A"/>
+        <line x1="2" y1="-6" x2="11" y2="-6" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="-2" x2="11" y2="-2" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="2"  x2="11" y2="2"  stroke="#1A1A1A" stroke-width="0.8"/>
+        <text x="28" y="2" class="row">critique reviews</text>
+      </g>
+      <!-- row 2 -->
+      <g transform="translate(0, 32)">
+        <rect x="0" y="-12" width="14" height="18" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+        <polyline points="10,-12 14,-8 10,-8 10,-12" fill="#1A1A1A"/>
+        <line x1="2" y1="-6" x2="11" y2="-6" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="-2" x2="11" y2="-2" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="2"  x2="11" y2="2"  stroke="#1A1A1A" stroke-width="0.8"/>
+        <text x="28" y="2" class="row">postmortems</text>
+      </g>
+      <!-- row 3 -->
+      <g transform="translate(0, 64)">
+        <rect x="0" y="-12" width="14" height="18" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+        <polyline points="10,-12 14,-8 10,-8 10,-12" fill="#1A1A1A"/>
+        <line x1="2" y1="-6" x2="11" y2="-6" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="-2" x2="11" y2="-2" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="2"  x2="11" y2="2"  stroke="#1A1A1A" stroke-width="0.8"/>
+        <text x="28" y="2" class="row">standards docs</text>
+      </g>
+      <!-- row 4 -->
+      <g transform="translate(0, 96)">
+        <rect x="0" y="-12" width="14" height="18" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+        <polyline points="10,-12 14,-8 10,-8 10,-12" fill="#1A1A1A"/>
+        <line x1="2" y1="-6" x2="11" y2="-6" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="-2" x2="11" y2="-2" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="2"  x2="11" y2="2"  stroke="#1A1A1A" stroke-width="0.8"/>
+        <text x="28" y="2" class="row">interview banks</text>
+      </g>
+      <!-- row 5 -->
+      <g transform="translate(0, 128)">
+        <rect x="0" y="-12" width="14" height="18" fill="none" stroke="#1A1A1A" stroke-width="1.2"/>
+        <polyline points="10,-12 14,-8 10,-8 10,-12" fill="#1A1A1A"/>
+        <line x1="2" y1="-6" x2="11" y2="-6" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="-2" x2="11" y2="-2" stroke="#1A1A1A" stroke-width="0.8"/>
+        <line x1="2" y1="2"  x2="11" y2="2"  stroke="#1A1A1A" stroke-width="0.8"/>
+        <text x="28" y="2" class="row">failure cases</text>
+      </g>
+    </g>
+
+    <!-- divider -->
+    <line x1="60"  y1="290" x2="155" y2="290" stroke="#D1D5DB" stroke-width="1"/>
+    <text x="200" y="294" text-anchor="middle" class="divider-t">或</text>
+    <line x1="245" y1="290" x2="340" y2="290" stroke="#D1D5DB" stroke-width="1"/>
+
+    <!-- zero-seed branch -->
+    <text x="36"  y="320" class="row-dim">零种子？</text>
+    <text x="36"  y="345" class="row">→ 进入种子勘探模式</text>
+    <text x="36"  y="368" class="row-dim">luban 输出"该 sub-specialty 的</text>
+    <text x="36"  y="386" class="row-dim">critique corpora 候选清单"</text>
+
+    <!-- footer label -->
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">你提供的输入</text>
+  </g>
+
+  <!-- ====== Arrow 1 → ====== -->
+  <g transform="translate(440, 320)">
+    <line x1="0" y1="0" x2="42" y2="0" stroke="#1A1A1A" stroke-width="1.8"/>
+    <polyline points="36,-6 48,0 36,6" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ============================================================
+       PANEL 2 — 鲁班蒸馏 (blue)
+       ============================================================ -->
+  <g transform="translate(500, 110)">
+    <rect x="0" y="0" width="400" height="430" rx="10" ry="10" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+    <rect x="0" y="0" width="400" height="6" rx="3" ry="3" fill="#2563EB"/>
+
+    <circle cx="50" cy="58" r="22" fill="#2563EB"/>
+    <text x="50" y="66" text-anchor="middle" class="step-num">2</text>
+
+    <text x="88" y="55" class="panel-h">鲁班蒸馏</text>
+    <text x="88" y="74" class="panel-sub">LUBAN AUTO-GENERATES</text>
+
+    <!-- 5 stages -->
+    <g transform="translate(36, 120)">
+      <g transform="translate(0, 0)">
+        <polygon points="0,-5 0,5 8,0" fill="#2563EB"/>
+        <text x="18" y="4" class="row">Stage 1 · taxonomy mining</text>
+      </g>
+      <g transform="translate(0, 28)">
+        <polygon points="0,-5 0,5 8,0" fill="#2563EB"/>
+        <text x="18" y="4" class="row">Stage 2 · anchor</text>
+      </g>
+      <g transform="translate(0, 56)">
+        <polygon points="0,-5 0,5 8,0" fill="#2563EB"/>
+        <text x="18" y="4" class="row">Stage 3 · 5:3:2 progressive spec</text>
+      </g>
+      <g transform="translate(0, 84)">
+        <polygon points="0,-5 0,5 8,0" fill="#2563EB"/>
+        <text x="18" y="4" class="row">Stage 4 · critique rubric</text>
+      </g>
+      <g transform="translate(0, 112)">
+        <polygon points="0,-5 0,5 8,0" fill="#2563EB"/>
+        <text x="18" y="4" class="row">Stage 5 · tools &amp; workflow</text>
+      </g>
+    </g>
+
+    <!-- divider -->
+    <line x1="36" y1="270" x2="364" y2="270" stroke="#E5E7EB" stroke-width="1"/>
+
+    <!-- file tree output -->
+    <text x="36" y="295" class="row-dim">落到：</text>
+    <g transform="translate(36, 312)">
+      <text x="0"  y="14" class="row-mono">.claude/skills/&lt;role&gt;/</text>
+      <text x="20" y="34" class="row-mono">├─ SOUL.md</text>
+      <text x="20" y="52" class="row-mono">├─ SKILL.md</text>
+      <text x="20" y="70" class="row-mono">├─ identity.json</text>
+      <text x="20" y="88" class="row-mono">└─ references/...</text>
+    </g>
+
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">luban 自动生成</text>
+  </g>
+
+  <!-- ====== Arrow 2 → ====== -->
+  <g transform="translate(910, 320)">
+    <line x1="0" y1="0" x2="42" y2="0" stroke="#1A1A1A" stroke-width="1.8"/>
+    <polyline points="36,-6 48,0 36,6" fill="none" stroke="#1A1A1A" stroke-width="1.8" stroke-linejoin="round"/>
+  </g>
+
+  <!-- ============================================================
+       PANEL 3 — 你召唤 (orange)
+       ============================================================ -->
+  <g transform="translate(970, 110)">
+    <rect x="0" y="0" width="400" height="430" rx="10" ry="10" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.2"/>
+    <rect x="0" y="0" width="400" height="6" rx="3" ry="3" fill="#E55B13"/>
+
+    <circle cx="50" cy="58" r="22" fill="#E55B13"/>
+    <text x="50" y="66" text-anchor="middle" class="step-num">3</text>
+
+    <text x="88" y="55" class="panel-h">你召唤</text>
+    <text x="88" y="74" class="panel-sub">SUMMON IN CLAUDE CODE</text>
+
+    <!-- terminal window -->
+    <g transform="translate(30, 110)">
+      <!-- term frame -->
+      <rect x="0" y="0" width="340" height="270" rx="8" ry="8" fill="#1F2937"/>
+      <!-- title bar -->
+      <rect x="0" y="0" width="340" height="22" rx="8" ry="8" fill="#111827"/>
+      <rect x="0" y="14" width="340" height="8" fill="#111827"/>
+      <circle cx="14" cy="11" r="4" fill="#EF4444"/>
+      <circle cx="28" cy="11" r="4" fill="#F59E0B"/>
+      <circle cx="42" cy="11" r="4" fill="#10B981"/>
+
+      <!-- prompt + command -->
+      <text x="14" y="50" class="term-out">$</text>
+      <text x="30" y="50" class="term-cmd">/infra-pm</text>
+
+      <!-- response -->
+      <text x="14" y="82" class="term-name">◆ Mira:</text>
+
+      <text x="14" y="104" class="term-out">"这是 feature 罗列,不是</text>
+      <text x="14" y="124" class="term-out">assumption-first. 直接</text>
+      <text x="14" y="144" class="term-out">跳到 LangChain 编排违反</text>
+      <text x="14" y="164" class="term-out">Anthropic BEA 的核心立场:</text>
+      <text x="14" y="184" class="term-out">workflow 先于 agent.</text>
+      <text x="14" y="208" class="term-out">3 周 + 没有 eval pipeline</text>
+      <text x="14" y="228" class="term-out">= eval theater."</text>
+
+      <!-- caret -->
+      <rect x="14" y="248" width="8" height="14" fill="#E5E7EB" opacity="0.7"/>
+    </g>
+
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">在 Claude Code 里 · 会挑刺，不是套话</text>
+  </g>
+
+  <!-- ====== Bottom tagline ====== -->
+  <text x="700" y="582" text-anchor="middle" class="tagline">
+    从原料到会挑刺的专家 —— 3 步，不是 prompt 调音
+  </text>
+
+</svg>

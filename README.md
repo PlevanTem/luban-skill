@@ -34,6 +34,10 @@
 
 ## 快速开始
 
+<p align="center">
+  <img src="./usage.svg" alt="鲁班使用说明 3 步：① 你投料（critique reviews / postmortems / standards docs / interview banks / failure cases，或零种子进入勘探模式）→ ② 鲁班蒸馏（5 stage pipeline：taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow，落到 .claude/skills/&lt;role&gt;/）→ ③ 你召唤 /&lt;role&gt;，在 Claude Code 里得到会挑刺、不是套话的真专业评审" width="1100" />
+</p>
+
 1. **安装 skill** —— 本仓库本身就是 dogfood 布局：进入本仓库时，Claude Code 会自动从 `.claude/skills/luban-skill/` 加载。要装到全局自用，把 `.claude/skills/luban-skill/` 整目录复制到 `~/.claude/skills/luban-skill/` 即可。
 2. **在 Claude Code 里召唤鲁班**（必须显式说出 "luban" 或 "鲁班"，不会被泛触发劫持）：
 
