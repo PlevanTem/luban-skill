@@ -34,17 +34,27 @@ luban 仅在用户**明确说出 "luban" 或 "鲁班"** 时激活。不蹭以下
 
 ## 2. 执行流程概览
 
-完整流程在 `references/generation-protocol.md`，共 15 个 section。
+完整流程在 `references/generation-protocol.md`，共 16 个 section（v0.3.0 起含 §13a 交互协议）。
 
-高层步骤（每步都 view 对应 reference 文件，不要凭记忆执行）：
+高层步骤分为 **7 个 phase**（与 generation-protocol §13a.1 的 banner 一致）。每个 phase 开始前**必须**显示阶段 banner：
 
-1. **解析输入** (generation-protocol §1) — 检查领域名 + 强制 sub-specialty 收敛
-2. **族判定** (generation-protocol §2 + domain-families.md) — 5 个族骨架匹配，不匹配则停下
-3. **种子勘探** (generation-protocol §3 + seed-prospect-protocol.md) — 零种子时主动产 corpora-candidates.md
-4. **5 阶段流水线** (generation-protocol §4-§8) — Capability Taxonomy → Anchor → Progressive Specification → Critique Rubric → Tools & Workflow
-5. **luban 独有增量** (generation-protocol §9-§12) — SOUL.md + identity.json + evolution.jsonl + anti-patterns.md
-6. **6 check validation** (generation-protocol §13) — 内容质量 4 + 结构一致性 2
-7. **交付** (generation-protocol §14) — 完整目录 + GENERATION_REPORT.md
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📍 Phase N / 7 — <phase name>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+7 个 phase（每步都 view 对应 reference 文件，不要凭记忆执行）：
+
+1. **Phase 1: 解析输入 + 族判定 + sub-specialty 收敛** (§1-§2)
+2. **Phase 2: 种子勘探** (§3, seed-prospect-protocol.md) — 零种子时产 corpora-candidates.md
+3. **Phase 3: Capability Taxonomy** (§4) — 结束时触发**确认门 A**（capability-map preview）
+4. **Phase 4: Anchors + persona 命名** (§5, §9.2) — 结束时触发**确认门 B**（persona preview）
+5. **Phase 5: Progressive spec + Rubric + Tools** (§6-§8) — SKILL.md / capability-clusters / critique-rubric / retrieval-sources
+6. **Phase 6: SOUL.md (9-section v0.3) + anti-patterns + evolution-protocol** (§9-§12)
+7. **Phase 7: Validation + Delivery** (§13-§14) — 6 check 全过后触发**确认门 C**（pre-delivery preview）
+
+每个 phase 用 TaskCreate 维护可视进度。状态信号约定（per §13a.3）：🔍 调研中 / 📝 起草中 / 🧪 验证中 / ✅ 通过 / ⚠️ 需确认。
 
 ---
 
@@ -76,7 +86,9 @@ luban 仅在用户**明确说出 "luban" 或 "鲁班"** 时激活。不蹭以下
 
 ## 4. 关键决策点 (where Claude must stop and ask user)
 
-luban 在以下时机**必须停下问用户**，不能擅自决定：
+luban 分两类 stopping points：**stop-and-ask**（用户不答 luban 走不下去）+ **preview-and-confirm**（用户审阅 luban 阶段产物）。
+
+### 4.1 Stop-and-ask 门（6 个，沿用 v0.2）
 
 1. **sub-specialty 不明确** — 用户只给"产品经理"这种粗粒度，必须回问到"B2B SaaS PM"级别 (per generation-protocol §1.1)
 2. **族不匹配** — 用户的领域不在 5 个族内 (per domain-families.md "未匹配处理")，让用户选 (a) 自己写族骨架 (b) 自由模式
@@ -85,14 +97,38 @@ luban 在以下时机**必须停下问用户**，不能擅自决定：
 5. **6 check 任一失败** — 不能放水通过。回到对应 stage 修复
 6. **evolution entry 落盘前** — `user_confirmed` 必须 true 才能写入 evolution.jsonl
 
+### 4.2 Preview-and-confirm 门（3 个，v0.3.0 新增 — per generation-protocol §13a.2）
+
+- **门 A**: capability-map.md 落地后 — show 摘要 + [unverified] 数量，请用户决定 continue / revise / cancel
+- **门 B**: anchors + SOUL §1-§5 落地后 — show persona 预览（handle、名字、intro、sacred anchors），请用户决定 continue / rename / revise anchors / cancel
+- **门 C**: validation 全过后、写 GENERATION_REPORT 前 — show 交付摘要（路径、模式、honest limits），请用户决定 commit / revise
+
+### 4.3 命名确认（v0.3.0 强制 — per generation-protocol §9.2）
+
+在确认门 B 触发**之前**，luban 必须用 AskUserQuestion 三选一确认 display name：
+- 选项 A: 功能名（基于 sub-specialty slug）
+- 选项 B: luban 建议的拟人名（短、中性、不带身份信息）
+- 选项 C: 用户自定
+
+详细命名规则见 `references/soul-template.md` "命名的决策流程" 段。
+
 ---
 
 ## 5. 输出产物结构
 
+**默认落盘路径**：`.claude/skills/<role-slug>/`（v0.3.0 起改为 Claude Code 原生 skills 路径）
+
+- 路径决策：每个生成的角色是一个 Claude Code Skill，必须放在 `.claude/skills/` 才能被框架原生发现（`/` 浮动面板可见 + auto-activation）
+- `<role-slug>` 建议**短形态**（如 `infra-pm` 而非 `agent-infra-pm`），因为 `.claude/skills/` 路径已隐含"这是一个 agent skill"
+- 同一项目下多个角色并列存放在 `.claude/skills/` 下，每个角色一个子目录
+- luban-skill 自身也住在 `.claude/skills/luban-skill/`，不冲突
+- 自动维护 `.claude/skills/INDEX.md` —— 每次生成新角色 append 一行（slug / display name / family / sub-specialty / vibes_risk）
+- 用户显式指定其他路径时遵从用户
+
 成功生成的角色目录:
 
 ```
-<role-slug>/
+.claude/skills/<role-slug>/
 ├── SOUL.md
 ├── SKILL.md                          (角色的 Claude Code skill 入口，不是 luban 本身)
 ├── identity.json                     (符合 references/identity-schema.json)

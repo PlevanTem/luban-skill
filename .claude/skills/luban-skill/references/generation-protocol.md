@@ -196,15 +196,41 @@ Anchors 必须是 **opinionated** 的。如果一个 anchor 任何专家都会�
 
 ---
 
-## 9. SOUL.md（人格层）
+## 9. SOUL.md（人格层 / persona 层，v0.3.0 升级）
 
-SOUL 不是角色的"判断"，是角色的"语气"。按 OpenClaw 的克制原则：
+SOUL 不只是"语气"——v0.3.0 起承载完整 persona 化身份。详细模板见 `references/soul-template.md`。
 
-- 短。每个 section 不超过 200 字
-- 无生平、无 vibes、无企业话术
-- 5 个 section：Tone / Stance / Brevity rule / No-go phrases / When to push back
+### 9.1 9 个 section（v0.3.0）
 
-**为什么独立成层**：方法论可以独立于人格，但**专业者场景中人格直接影响协作体验**。一个法律专家可以是"谨慎、迂回、留余地"，也可以是"直接、不规避结论、给坏消息"。两种人格对应两种使用场景。SOUL 层让这个差异显式。
+1. **Identity** — handle / display name / role one-liner / pronouns
+2. **Voice** (constant) — formality / vocabulary / emoji / humor (业界标准)
+3. **Tone** (situational) — 场景适配
+4. **First-encounter intro** — 首次被调用的开场（≤ 80 字）
+5. **How to work with me** — 协作契约（用户读这段决定怎么交任务）
+6. **Stance** — 默认立场
+7. **Brevity rule** — 长度规则
+8. **No-go phrases** — 不会说的话
+9. **When to push back** — 反驳触发条件
+
+### 9.2 命名是必有一道用户确认
+
+生成 §1 Identity 时，luban **必须**通过 AskUserQuestion 与用户确认 display name：
+- 选项 A: 功能名（如 "Agent Infra PM"）
+- 选项 B: luban 建议的拟人名（≤ 4 字符 / 2 汉字，中性，不带身份信息）
+- 选项 C: 用户自定
+
+详细命名规则见 soul-template.md "命名的决策流程" 段。
+
+### 9.3 为什么独立成层（沿用旧版理由）
+
+方法论可以独立于人格，但**专业者场景中人格直接影响协作体验**。一个法律专家可以是"谨慎、迂回、留余地"，也可以是"直接、不规避结论、给坏消息"。两种人格对应两种使用场景。SOUL 层让这个差异显式。
+
+### 9.4 SOUL 与 identity.json 的边界（强化）
+
+- `identity.json` = 机器可读的判断核心（anchors / values / honest_limits / generation tracking）
+- `SOUL.md` = 用户可读的人格化身份 + 语气 + 协作契约
+
+**不在 identity.json 加 persona 字段**——避免双源不一致。identity.json schema v0.2 不需要变动。
 
 ---
 
@@ -296,12 +322,136 @@ SOUL 不是角色的"判断"，是角色的"语气"。按 OpenClaw 的克制原�
 
 ---
 
+## 13a. 交互协议（v0.3.0 新增 — 整个生成过程的 UX 约束）
+
+### 13a.1 阶段 banner 约束
+
+每次进入新 phase 前**必须**显示 banner，让用户实时知道在哪一步。格式：
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📍 Phase N / 7 — <phase name>
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+7 个 phase（与 SKILL.md §2 高层步骤对齐）：
+
+1. **输入解析 + 族判定 + sub-specialty 收敛** (§1-§2)
+2. **种子勘探 / corpora discovery** (§3) — 可能含已有的 A/B/C 选择门
+3. **Stage 1: Capability Taxonomy** (§4) — 结束时 → **确认门 A**
+4. **Stage 2: Anchors + persona 命名** (§5 + §9.2) — 结束时 → **确认门 B**
+5. **Stages 3-5: Progressive spec + Rubric + Tools** (§6-§8)
+6. **SOUL.md + anti-patterns + evolution-protocol** (§9-§12)
+7. **Validation + Delivery** (§13-§14) — 交付前 → **确认门 C**
+
+每个 phase 之间用 TaskCreate/TaskUpdate 维护可视进度（每 phase 创建一个或多个 task）。
+
+### 13a.2 三个新确认门（v0.3.0 强制）
+
+旧版 6 个 stop-and-ask 点（见 SKILL.md §4）保留。**新增以下 3 个 preview-and-confirm 门**：
+
+#### 确认门 A — capability-map preview (Phase 3 末尾)
+
+落地 `references/capability-map.md` 后，**show 关键摘要**（不要 dump 整个文件）：
+
+```
+capability-map.md 草稿完成：
+- N 个一级分支，M 个叶节点
+- K 条标 [unverified]（zero-shot 模式下 K = M）
+- Critique standards 分支预览：<列 3-5 条最具特色的 check>
+
+确认继续 (a) / 调整哪几条 (b) / 取消重来 (c)？
+```
+
+用 AskUserQuestion 收集回应。用户选 (b) 时，回到 §4 修改。
+
+#### 确认门 B — anchors + persona preview (Phase 4 末尾)
+
+落地 `identity.json` anchors + SOUL.md §1-§5 后，show 完整 persona 预览：
+
+```
+你即将获得的角色：
+
+  Handle: @<slug>
+  Display name: <name>
+  Role one-liner: <30 字>
+
+  Voice: <formality> · <vocab> · emoji <none/sparing>
+  First-encounter intro 预览：
+  > <60-80 字 intro 全文>
+
+  Sacred anchors (3-4 条最关键):
+  - <anchor 1>
+  - <anchor 2>
+  - ...
+
+确认 persona (a) / 改名字 (b) / 改 anchors 哪几条 (c) / 取消 (d)？
+```
+
+⚠️ **命名**：如果还没确认过 display name，此处用 AskUserQuestion 三选一（功能名 / 拟人名 / 自定）。
+
+#### 确认门 C — pre-delivery (Phase 7 末尾，validation 后)
+
+6-check 全通过后、写 GENERATION_REPORT.md 前，show 交付摘要：
+
+```
+即将交付：
+- 路径：.claude/skills/<role-slug>/  (v0.3.0+ — Claude Code 原生 skills 路径)
+- 11 个文件 (含 evolution.jsonl 空文件)
+- generation_mode: <mode>, vibes_risk: <risk>
+- 6/6 validation 通过
+- INDEX.md 已 append 新行
+
+honest limits (从 identity.json 摘要):
+- <limit 1>
+- <limit 2>
+- <limit 3>
+
+确认落盘 (a) / 还想改哪里 (b)？
+```
+
+### 13a.3 友好状态信号
+
+每个 phase 进行中，使用以下信号给用户进度感（避免长静默）：
+
+- 🔍 检索 / 调研中（web fetch / search）
+- 📝 起草文件中
+- 🧪 跑 validation 中
+- ✅ 通过
+- ⚠️ 需要你确认
+
+### 13a.4 中断恢复
+
+如果用户在任意 confirmation gate 选"取消"或"暂停"：
+- TaskList 保留状态
+- 已落盘的草稿文件保留（带 `.draft` 后缀）
+- 下次进入 luban 时识别有未完成的角色生成，主动询问"继续 / 弃用 / 重来"
+
+⚠️ 实际 `.draft` 文件机制是约定，不是强制 — luban 可以选择只保留 task list 状态，让用户重新调用。
+
+---
+
 ## 14. 交付
+
+**默认落盘路径**：`.claude/skills/<role-slug>/`（v0.3.0 起 — Claude Code 原生 skills 路径，框架可发现）
+
+- `<role-slug>` 用**短形态**（如 `infra-pm` 不是 `agent-infra-pm`），路径已隐含 agent 性质
+- 不再用 `.claude/agent/` —— 那不是 Claude Code 原生扫描路径，会导致 skill 不可发现 + handle 不可调用
+
+**INDEX.md 自动维护**（v0.3.0 强制 — per Layer-3 scaling design）：
+
+每次生成新角色后，**必须**在 `.claude/skills/INDEX.md` 追加一行：
+
+```markdown
+| <slug> | <display_name> | <domain_family> | <sub_specialty> | <stage> | <vibes_risk> |
+```
+
+INDEX.md 是 `/agents` meta-skill 的数据源，也是用户手动浏览全部已蒸馏角色的入口。若 INDEX.md 不存在，luban 主动创建并写入表头（per `INDEX.md` 模板见 luban-skill SKILL.md §5）。
 
 最终产物结构：
 
 ```
-<role-slug>/
+.claude/skills/<role-slug>/
 ├── SOUL.md
 ├── SKILL.md
 ├── identity.json
