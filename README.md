@@ -1,5 +1,9 @@
 # 鲁班.skill (luban-skill)
 
+<p align="center">
+  <img src="./intro.png" alt="luban-skill: 蒸馏专业方法论，而不是刻板印象 — distill expert methodology, not LinkedIn bios. 左侧原材料（critique reviews / postmortems / interview banks / standards docs / failure cases）经蒸馏器输出为结构化 SKILL 文档（anchors / critique rubric / honest limits）" width="780" />
+</p>
+
 > Nuwa 蒸馏人，鲁班蒸馏专业方法论。
 
 **把 "AI 扮演专家" 升级为 "AI 真的懂这个专业"。**

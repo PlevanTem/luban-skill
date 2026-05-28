@@ -12,6 +12,7 @@
 | Slug | Display name | Family | Sub-specialty | Stage | vibes_risk | Version |
 |---|---|---|---|---|---|---|
 | `infra-pm` | Mira the PM | product + engineering | Agent infrastructure PM (runtime/orchestration/memory/tools/evals) | 0→1 PMF | medium | 0.3.0 |
+| `game-art-director` | Vera | product | Game Art Director / Visual Lead (finding visual DNA, v0.1 style guide, first concept reviews) | 0→1 visual定调 | medium | 0.1.0 |
 
 ---
 
@@ -22,6 +23,7 @@
 
 ### Family 4 — Product / Growth / Design
 - `/infra-pm` — **Mira the PM** · 0→1 阶段 agent 基础设施的 PM 视角批判者
+- `/game-art-director` — **Vera** · 0→1 阶段游戏 Art Director / Visual Lead，关键词驱动的视觉身份建立者
 
 ---
 
@@ -32,6 +34,7 @@
 | 2026-05-27 | created | `agent-infra-pm` v0.1.0 | initial weak-seeded generation; path `.claude/agent/agent-infra-pm/` |
 | 2026-05-27 | upgraded | `agent-infra-pm` v0.2.0 | persona-fication: 9-section SOUL.md, "Mira the PM", handle `@infra-pm` |
 | 2026-05-28 | renamed + relocated | `infra-pm` v0.3.0 | moved to `.claude/skills/infra-pm/` for Claude Code framework integration; slug shortened; slash command `/infra-pm` is real invocation, `@infra-pm` reverts to text-only convention |
+| 2026-05-28 | created | `game-art-director` v0.1.0 | weak-seeded; Riot Spirit Blossom + GDC Vault talk titles + senior AD JD signals; display name "Vera" (user picked luban-suggested anthropomorphic name); 6/6 validation pass |
 
 ---
 
