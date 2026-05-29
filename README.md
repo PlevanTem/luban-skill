@@ -25,17 +25,6 @@
 
 ---
 
-## Why luban (not another persona prompt)
-
-市面上 90% "AI 扮演专家" 项目栽在两件事上：
-
-1. **Vibes persona**：`"You are a senior X with 20 years of experience"` 这类描述性 prompt 产出 LinkedIn 简介式 voice，看起来对、抓不到真问题。
-2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
-
-鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
-
----
-
 ## 鲁班能为你做什么
 
 已 ship 的 4 个 skill 直接覆盖这些场景：
@@ -59,6 +48,31 @@
 | 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
 
 **差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝套话，critique-rubric 强制结构化检查，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些写成了**具名失败模式**——它们不是 prompt 临时想出来的，是 skill 定义里的固定 anchor。**立场是结构性的**——详见 [工作原理](#工作原理)。
+
+---
+
+## Why luban (not another persona prompt)
+
+市面上 90% "AI 扮演专家" 项目栽在两件事上：
+
+1. **Vibes persona**：`"You are a senior X with 20 years of experience"` 这类描述性 prompt 产出 LinkedIn 简介式 voice，看起来对、抓不到真问题。
+2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
+
+鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
+
+**跟邻近项目的位置关系**：
+
+| 方案 | 它解决什么 | 鲁班不一样的地方 |
+|---|---|---|
+| **普通 prompt / "扮演资深 X"** | 让 LLM 看起来像专家 | 鲁班拒绝 vibes persona——不是描述一个专家，是按方法论蒸馏 |
+| **[Nuwa](https://github.com/alchaincyf/nuwa-skill)** | 蒸馏具体真人 (Munger / Naval / Musk) 的 mental model | 鲁班不绑真人，蒸馏的是**该 sub-specialty 的方法论本身** |
+| **[OpenPersona](https://github.com/acnlabs/OpenPersona)** | persona 生命周期管理（生成、约束、演化） | 鲁班关心的是"专业判断怎么形成"，不是 persona 怎么 portable |
+| **soul.md 系列** (clawsouls / rokoss21 / aaronjmars) | AI agent 人格 portability | 同上，鲁班正交于人格层 |
+| **RAG / 向量库** | 给 LLM 外挂领域知识 | 鲁班蒸馏的是**判断标准 + 决策启发法 + 自检 rubric**，不是文档检索 |
+
+护城河在两件事：
+1. **强制 sub-specialty**——不接受"产品经理"这种泛输入，必须收敛到"B2B SaaS PM"级别
+2. **种子勘探模式**——用户没种子时，鲁班主动产出"该 sub-specialty 的 critique corpora 候选清单"，让用户去找
 
 ---
 
@@ -117,22 +131,6 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 | B2B SaaS Content Ops Director (cross-region) | [`/content-ops-director`](.claude/skills/content-ops-director/) | Lin | ✅ v0.1.0 ship |
 
 > v0.4.0 把元工具方法论真的跑出了 4 个角色——全部用 luban 自己蒸馏。欢迎 PR 贡献新的 sub-specialty。
-
----
-
-## 和现有方案有什么不同
-
-| 方案 | 它解决什么 | 鲁班不一样的地方 |
-|---|---|---|
-| **普通 prompt / "扮演资深 X"** | 让 LLM 看起来像专家 | 鲁班拒绝 vibes persona——不是描述一个专家，是按方法论蒸馏 |
-| **[Nuwa](https://github.com/alchaincyf/nuwa-skill)** | 蒸馏具体真人 (Munger / Naval / Musk) 的 mental model | 鲁班不绑真人，蒸馏的是**该 sub-specialty 的方法论本身** |
-| **[OpenPersona](https://github.com/acnlabs/OpenPersona)** | persona 生命周期管理（生成、约束、演化） | 鲁班关心的是"专业判断怎么形成"，不是 persona 怎么 portable |
-| **soul.md 系列** (clawsouls / rokoss21 / aaronjmars) | AI agent 人格 portability | 同上，鲁班正交于人格层 |
-| **RAG / 向量库** | 给 LLM 外挂领域知识 | 鲁班蒸馏的是**判断标准 + 决策启发法 + 自检 rubric**，不是文档检索 |
-
-护城河在两件事：
-1. **强制 sub-specialty**——不接受"产品经理"这种泛输入，必须收敛到"B2B SaaS PM"级别
-2. **种子勘探模式**——用户没种子时，鲁班主动产出"该 sub-specialty 的 critique corpora 候选清单"，让用户去找
 
 ---
 
