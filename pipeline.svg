@@ -87,7 +87,7 @@
     <circle cx="32" cy="42" r="16" fill="#2563EB"/>
     <text x="32" y="48" text-anchor="middle" class="step-num">2</text>
 
-    <text x="60" y="40" class="panel-h">钉身份锚</text>
+    <text x="60" y="40" class="panel-h">锁定身份</text>
     <text x="60" y="56" class="panel-sub">ANCHOR</text>
 
     <!-- Icon: anchor / target pin -->
@@ -132,7 +132,7 @@
     <circle cx="32" cy="42" r="16" fill="#7C3AED"/>
     <text x="32" y="48" text-anchor="middle" class="step-num">3</text>
 
-    <text x="60" y="40" class="panel-h">5:3:2 分层</text>
+    <text x="60" y="40" class="panel-h">精选核心</text>
     <text x="60" y="56" class="panel-sub">PROGRESSIVE SPEC</text>
 
     <!-- Icon: 3-tier layered bars -->
@@ -146,7 +146,7 @@
     </g>
 
     <!-- Action -->
-    <text x="20" y="190" class="row">Tier-1 内进步抽样</text>
+    <text x="20" y="190" class="row">从能力树挑出 Tier-1：</text>
     <text x="20" y="210" class="row">5 核心 + 3 邻接 + 2 远端</text>
     <text x="20" y="230" class="row">对抗 stereotype 再生产</text>
 
@@ -176,7 +176,7 @@
     <circle cx="32" cy="42" r="16" fill="#E55B13"/>
     <text x="32" y="48" text-anchor="middle" class="step-num">4</text>
 
-    <text x="60" y="40" class="panel-h">编批判尺</text>
+    <text x="60" y="40" class="panel-h">立批判标准</text>
     <text x="60" y="56" class="panel-sub">CRITIQUE RUBRIC</text>
 
     <!-- Icon: checklist / ruler -->
@@ -226,7 +226,7 @@
     <circle cx="32" cy="42" r="16" fill="#0891B2"/>
     <text x="32" y="48" text-anchor="middle" class="step-num">5</text>
 
-    <text x="60" y="40" class="panel-h">出工具集</text>
+    <text x="60" y="40" class="panel-h">封装上线</text>
     <text x="60" y="56" class="panel-sub">TOOLS &amp; WORKFLOW</text>
 
     <!-- Icon: toolbox -->

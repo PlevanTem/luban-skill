@@ -169,7 +169,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 ### 蒸馏流水线（5 阶段）
 
 <p align="center">
-  <img src="./pipeline.svg" alt="luban 5 阶段蒸馏流水线：① 挖能力树（TAXONOMY MINING，输出 capability-map.md）→ ② 钉身份锚（ANCHOR，输出 identity.json）→ ③ 5:3:2 分层（PROGRESSIVE SPEC，输出 SKILL.md + clusters）→ ④ 编批判尺（CRITIQUE RUBRIC，输出 critique-rubric.md）→ ⑤ 出工具集（TOOLS & WORKFLOW，输出完整角色目录 + GENERATION_REPORT.md）。从一堆原料 critique 到一个可被 /<role> 召唤的会挑刺真专家。" width="1100" />
+  <img src="./pipeline.svg" alt="luban 5 阶段蒸馏流水线：① 挖能力树（TAXONOMY MINING，输出 capability-map.md）→ ② 锁定身份（ANCHOR，输出 identity.json）→ ③ 精选核心（PROGRESSIVE SPEC，5 + 3 + 2 抽样，输出 SKILL.md + clusters）→ ④ 立批判标准（CRITIQUE RUBRIC，输出 critique-rubric.md）→ ⑤ 封装上线（TOOLS & WORKFLOW，输出完整角色目录 + GENERATION_REPORT.md）。从一堆原料 critique 到一个可被 /<role> 召唤的会挑刺真专家。" width="1100" />
 </p>
 
 <details>
