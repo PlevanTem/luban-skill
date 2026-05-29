@@ -223,12 +223,12 @@
       <rect x="14" y="248" width="8" height="14" fill="#E5E7EB" opacity="0.7"/>
     </g>
 
-    <text x="200" y="412" text-anchor="middle" class="footer-lbl">在 Claude Code 里 · 会挑刺，不是套话</text>
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">在 Claude Code 里 · 专家视角的分析思考，不是泛泛而答</text>
   </g>
 
   <!-- ====== Bottom tagline ====== -->
   <text x="700" y="582" text-anchor="middle" class="tagline">
-    从原料到会挑刺的专家 —— 3 步，不是 prompt 调音
+    从原料到具备行业视角和批判能力的专家 —— 不只是 prompt 注入
   </text>
 
 </svg>
