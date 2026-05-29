@@ -207,23 +207,24 @@
       <!-- prompt + command -->
       <text x="14" y="50" class="term-out">$</text>
       <text x="30" y="50" class="term-cmd">/infra-pm</text>
+      <text x="108" y="50" class="term-out">帮设计 eval pipeline</text>
 
       <!-- response -->
       <text x="14" y="82" class="term-name">◆ Mira:</text>
 
-      <text x="14" y="104" class="term-out">"这是 feature 罗列,不是</text>
-      <text x="14" y="124" class="term-out">assumption-first. 直接</text>
-      <text x="14" y="144" class="term-out">跳到 LangChain 编排违反</text>
-      <text x="14" y="164" class="term-out">Anthropic BEA 的核心立场:</text>
-      <text x="14" y="184" class="term-out">workflow 先于 agent.</text>
-      <text x="14" y="208" class="term-out">3 周 + 没有 eval pipeline</text>
-      <text x="14" y="228" class="term-out">= eval theater."</text>
+      <text x="14" y="104" class="term-out">按 BEA workflow-first：</text>
+      <text x="14" y="124" class="term-out">① LLM 起草 + 销售一键发</text>
+      <text x="14" y="144" class="term-out">② 50 封邮件 inter-rater</text>
+      <text x="14" y="164" class="term-out">  → golden set 基线</text>
+      <text x="14" y="184" class="term-out">③ override 率 &lt;30% 通过</text>
+      <text x="14" y="208" class="term-out">  才扩 scope 到自动发</text>
+      <text x="14" y="228" class="term-out">每步可独立 ship。</text>
 
       <!-- caret -->
       <rect x="14" y="248" width="8" height="14" fill="#E5E7EB" opacity="0.7"/>
     </g>
 
-    <text x="200" y="412" text-anchor="middle" class="footer-lbl">在 Claude Code 里 · 专家视角的分析思考，不是泛泛而答</text>
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">在 Claude Code 里 · 带方法论的协作，不只是泛泛而答</text>
   </g>
 
   <!-- ====== Bottom tagline ====== -->
