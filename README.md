@@ -27,14 +27,14 @@
 
 ## 鲁班能为你做什么
 
-已 ship 的 4 个 skill 直接覆盖这些场景：
+自己没有现成的 skill？用 luban 生成一个专家（律师 / 财务顾问 / 投资人 / design director / 合规 / 并购…），把"判断该专业活儿做得好不好的标准"工程化成可执行的 Skill。
+
+**本仓库已 ship 的 4 个 skill** 直接覆盖这些场景：
 
 - **写 PRD / 评 AI agent 基建** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM，0→1 PMF 阶段真懂 Anthropic Building Effective Agents 立场，挑刺不套话
 - **做内容运营 / 排海内外社媒** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin，B2B SaaS 跨地区，measurement-first + employee 8x leverage
 - **做 UX 调研决策** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren，Erika Hall 路线先质疑 method-decision fit，不是优化问卷
 - **定游戏视觉方向** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera，关键词驱动 visual DNA，拒绝 mood-board procrastination
-
-**自己没有现成的 skill？** 用 luban 蒸馏一个（律师 / 财务顾问 / 投资人 / design director / 合规 / 并购…），鲁班不取代该专业的人，**它把"判断该专业活儿做得好不好的标准"工程化成可执行的 Skill**。
 
 ### 效果对比
 
@@ -59,6 +59,8 @@
 2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
 
 鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
+
+**为什么做这件事**：[colleague-skill](https://github.com/titanwings/colleague-skill) 证明了"蒸馏一个具体的人"可行，[Nuwa](https://github.com/alchaincyf/nuwa-skill) 把它推到极致——蒸馏 Munger / Naval / Musk 这类有海量公开语料的真人。但大部分专业者面对的不是"我想要一个 Musk 在线对话"，而是"我想要一个能像资深 B2B SaaS PM 那样审视我 PRD 的判断者"。这不是蒸馏人，**是蒸馏专业方法论**。难点在两件事——**专业是怎么形成的**（critique corpora / 标准文档 / 失败案例的累积，而非博客 / 描述 / 成功故事）+ **专业是怎么验证的**（6 个 check 全过，而非"我感觉它说得对"）。`luban-skill` 把这两件事工程化成可执行的 protocol。
 
 **跟邻近项目的位置关系**：
 
@@ -264,21 +266,6 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 ## 当前进度 & Changelog
 
 v0.3.0 已 ship——方法论内化重构完成，鲁班独立运行。v0.4.0 已蒸馏 4 个角色。完整版本历史见 [CHANGELOG.md](CHANGELOG.md)。
-
----
-
-<details>
-<summary><b>立项动机</b>（为什么做这件事 / 和 Nuwa 等项目的关系）</summary>
-
-[colleague-skill](https://github.com/titanwings/colleague-skill) 证明了"蒸馏一个具体的人"可行。[Nuwa](https://github.com/alchaincyf/nuwa-skill) 把它推到极致——蒸馏 Munger、Naval、Musk 这类有海量公开语料的真人。
-
-但大部分专业者面对的不是"我想要一个 Musk 在线对话"，而是"我想要一个能像资深 B2B SaaS PM 那样审视我 PRD 的判断者"。这不是蒸馏人，**是蒸馏专业方法论**。
-
-蒸馏方法论的难点不在"如何让 LLM 扮演专家"——那是已知解决的问题，效果还很差。难点在两件事：**专业是怎么形成的**（critique corpora、标准文档、失败案例的累积，而非博客 / 描述 / 成功故事）+ **专业是怎么验证的**（6 个 check 全过，而非"我感觉它说得对"）。
-
-`luban-skill` 把这两件事工程化成可执行的 protocol。**工具不是凭空想出来的——是工匠在 critique 失败、积累标准、记录失败案例中长出来的。luban-skill 就是这件事的元工具。**
-
-</details>
 
 ---
 
