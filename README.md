@@ -1,3 +1,7 @@
+<p align="right">
+  🌐 <b>中文</b> · <a href="./README.en.md">English</a> · <a href="./README.ja.md">日本語</a>
+</p>
+
 # 鲁班.skill (luban-skill)
 
 <p align="center">
@@ -100,12 +104,12 @@
 
 ## 已蒸馏的 Skill 示例
 
-| Sub-specialty | Slash | Display name | 状态 | 种子类型 | vibes_risk |
-|---|---|---|---|---|---|
-| Agent infrastructure PM (0→1 PMF) | `/infra-pm` | Mira the PM | ✅ v0.3.0 ship | Anthropic BEA + senior Platform PM JDs | medium |
-| Game Art Director / Visual Lead (0→1 视觉定调) | `/game-art-director` | Vera | ✅ v0.1.0 ship | Riot Spirit Blossom + GDC Vault + senior AD JD | medium |
-| Generalist UX Research Director | `/ux-research-director` | Wren | ✅ v0.1.0 ship | Hall critique × Rohrer NN/g × ReOps 8 Pillars × Director JD | medium |
-| B2B SaaS Content Ops Director (cross-region) | `/content-ops-director` | Lin | ✅ v0.1.0 ship | CMI/Averi/FullFunnel × LinkedIn B2B × 国内 5 平台 mechanics | medium |
+| Sub-specialty | Slash | Display name | 状态 | 种子类型 |
+|---|---|---|---|---|
+| Agent infrastructure PM (0→1 PMF) | [`/infra-pm`](.claude/skills/infra-pm/) | Mira the PM | ✅ v0.3.0 ship | Anthropic BEA + senior Platform PM JDs |
+| Game Art Director / Visual Lead (0→1 视觉定调) | [`/game-art-director`](.claude/skills/game-art-director/) | Vera | ✅ v0.1.0 ship | Riot Spirit Blossom + GDC Vault + senior AD JD |
+| Generalist UX Research Director | [`/ux-research-director`](.claude/skills/ux-research-director/) | Wren | ✅ v0.1.0 ship | Hall critique × Rohrer NN/g × ReOps 8 Pillars × Director JD |
+| B2B SaaS Content Ops Director (cross-region) | [`/content-ops-director`](.claude/skills/content-ops-director/) | Lin | ✅ v0.1.0 ship | CMI/Averi/FullFunnel × LinkedIn B2B × 国内 5 平台 mechanics |
 
 > v0.4.0 把元工具方法论真的跑出了 4 个角色 —— `infra-pm` / `game-art-director` / `ux-research-director` / `content-ops-director` 全部用 luban 自己蒸馏。欢迎 PR 贡献新的 sub-specialty。
 
@@ -269,7 +273,9 @@
 
 ```
 ./
-├── README.md                         # 本文件
+├── README.md                         # 本文件（中文，默认）
+├── README.en.md                      # English
+├── README.ja.md                      # 日本語
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # 版本历史
 ├── ARCHITECTURE_v0.2.md              # 架构决策稿
@@ -312,15 +318,6 @@
 ```
 
 所有 `*-template.md` 是**可选脚手架**，不是强制模板。
-
----
-
-## What luban won't do (yet)
-
-- **种子质量决定上限**：LinkedIn 文章作种子和 design review 实录作种子，产出的角色差距巨大。鲁班无法补救坏种子。
-- **快速演进领域（AI、加密、监管）需要持续更新种子**：v0.4.0 在 6 个月后可能就过时。
-- **Validation 必要非充分**：6 个 check 全过不代表角色一定有用。最终判断标准是"真专业人士用了之后说有用"——这条鲁班自己测不了。
-- **首个端到端示例 `infra-pm` 是 weak-seeded**：用的是 Anthropic 公开 BEA + 公开 PM JD，没有真正的 critique corpora（如 LangChain maintainer review reject 评论）。`vibes_risk: medium`。升级路径见 `.claude/skills/infra-pm/references/corpora-candidates.md`。
 
 ---
 
