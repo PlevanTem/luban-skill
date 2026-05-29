@@ -6,15 +6,7 @@
 
 > Nuwa 蒸馏人，鲁班蒸馏专业方法论。
 
-**把 "AI 扮演专家" 升级为 "AI 真的懂这个专业"。**
-
-鲁班帮你把任何一门手艺——B2B SaaS 产品经理、刑事辩护律师、并购财务顾问、UX 设计总监——蒸馏成一个 Claude Code Skill，让 AI 像在这行干了十年一样跟你对话：会挑刺、会拒绝、会讲 trade-off，而不是给你一段 LinkedIn 简介式的人设。
-
-[![Version: v0.4.0](https://img.shields.io/badge/version-v0.4.0-green)]()
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)]()
-[![Skill: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)]()
-
----
+*Distill expert methodology into Claude Code Skills. Stop role-playing experts — generate ones that actually critique your PRDs, refuse bad calls, and name trade-offs.*
 
 ## 效果对比
 
@@ -32,13 +24,35 @@
 
 ---
 
+**把 "AI 扮演专家" 升级为 "AI 真的懂这个专业"。**
+
+鲁班帮你把任何一门手艺——B2B SaaS 产品经理、刑事辩护律师、并购财务顾问、UX 设计总监——蒸馏成一个 Claude Code Skill，让 AI 像在这行干了十年一样跟你对话：会挑刺、会拒绝、会讲 trade-off，而不是给你一段 LinkedIn 简介式的人设。
+
+[![Version: v0.4.0](https://img.shields.io/badge/version-v0.4.0-green)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)]()
+[![Skill: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)]()
+
+---
+
 ## 快速开始
 
 <p align="center">
   <img src="./usage.svg" alt="鲁班使用说明 3 步：① 你投料（critique reviews / postmortems / standards docs / interview banks / failure cases，或零种子进入勘探模式）→ ② 鲁班蒸馏（5 stage pipeline：taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow，落到 .claude/skills/&lt;role&gt;/）→ ③ 你召唤 /&lt;role&gt;，在 Claude Code 里得到会挑刺、不是套话的真专业评审" width="1100" />
 </p>
 
-1. **安装 skill** —— 本仓库本身就是 dogfood 布局：进入本仓库时，Claude Code 会自动从 `.claude/skills/luban-skill/` 加载。要装到全局自用，把 `.claude/skills/luban-skill/` 整目录复制到 `~/.claude/skills/luban-skill/` 即可。
+1. **安装 skill** —— 本仓库本身就是 dogfood 布局：进入本仓库时，Claude Code 会自动从 `.claude/skills/luban-skill/` 加载。要装到全局自用：
+
+   ```bash
+   # macOS / Linux
+   git clone https://github.com/PlevanTem/luban-skill.git && \
+     cp -r luban-skill/.claude/skills/luban-skill ~/.claude/skills/
+   ```
+
+   ```powershell
+   # Windows PowerShell
+   git clone https://github.com/PlevanTem/luban-skill.git
+   Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
+   ```
 2. **在 Claude Code 里召唤鲁班**（必须显式说出 "luban" 或 "鲁班"，不会被泛触发劫持）：
 
    ```
@@ -71,18 +85,35 @@
 
 ---
 
+## Why luban (not another persona prompt)
+
+市面上 90% "AI 扮演专家" 项目栽在两件事上：
+
+1. **Vibes persona**：`"You are a senior X with 20 years of experience"` 这类描述性 prompt 产出 LinkedIn 简介式 voice，看起来对、抓不到真问题。
+2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
+
+鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
+
+> **Nuwa distills people. luban distills disciplines.**
+
+---
+
 ## 已蒸馏的 Skill 示例
 
 | Sub-specialty | Slash | Display name | 状态 | 种子类型 | vibes_risk |
 |---|---|---|---|---|---|
 | Agent infrastructure PM (0→1 PMF) | `/infra-pm` | Mira the PM | ✅ v0.3.0 ship | Anthropic BEA + senior Platform PM JDs | medium |
-| *[更多示例待社区贡献]* | — | — | — | — | — |
+| Game Art Director / Visual Lead (0→1 视觉定调) | `/game-art-director` | Vera | ✅ v0.1.0 ship | Riot Spirit Blossom + GDC Vault + senior AD JD | medium |
+| Generalist UX Research Director | `/ux-research-director` | Wren | ✅ v0.1.0 ship | Hall critique × Rohrer NN/g × ReOps 8 Pillars × Director JD | medium |
+| B2B SaaS Content Ops Director (cross-region) | `/content-ops-director` | Lin | ✅ v0.1.0 ship | CMI/Averi/FullFunnel × LinkedIn B2B × 国内 5 平台 mechanics | medium |
 
-> v0.4.0 把 v0.3.0 ship 的元工具方法论真的跑了一次 —— `infra-pm/` 就是用 luban 自己蒸馏出来的第一个角色。欢迎 PR 贡献你蒸馏出来的 sub-specialty。
+> v0.4.0 把元工具方法论真的跑出了 4 个角色 —— `infra-pm` / `game-art-director` / `ux-research-director` / `content-ops-director` 全部用 luban 自己蒸馏。欢迎 PR 贡献新的 sub-specialty。
 
 ---
 
 ## 和现有方案有什么不同
+
+> **Nuwa distills people. luban distills disciplines.**
 
 | 方案 | 它解决什么 | 鲁班不一样的地方 |
 |---|---|---|
@@ -284,7 +315,7 @@
 
 ---
 
-## Honest Limits（当前 v0.4.0）
+## What luban won't do (yet)
 
 - **种子质量决定上限**：LinkedIn 文章作种子和 design review 实录作种子，产出的角色差距巨大。鲁班无法补救坏种子。
 - **快速演进领域（AI、加密、监管）需要持续更新种子**：v0.4.0 在 6 个月后可能就过时。
