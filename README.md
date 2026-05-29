@@ -14,41 +14,16 @@
 
 ## 效果对比
 
-> 4 个真实场景。普通 prompt 的"扮演资深 X" vs luban 蒸馏 skill 的实际输出。每行对应本仓库已 ship 的一个 skill——点 slash 命令可直接打开 skill 目录。
+> 4 个真实场景，**subagent 实测调用本仓库已 ship 的 skill**（subagent 读完该 skill 的 SOUL / SKILL / critique-rubric / anti-patterns 后回应）。✅ 列是 skill 的真实输出，为表格紧凑做 editorial 压缩，**anchor 命名与结构性 move 保留原貌**。点 slash 命令直达 skill 目录。
 
-**1.「3 周上线 AI 邮件助手，用 LangChain」** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM
+| 场景 → Skill | ❌ "扮演资深 X" 通用 prompt | ✅ luban 蒸馏 skill 实测 |
+|---|---|---|
+| 「3 周上线 AI 销售邮件助手，用 LangChain，目标 50% 邮件 agent 自动处理」<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 你带来的是解决方案不是问题。「50% 自动处理」是 capability metric 不是 product metric——销售对草稿的 override 率才是，典型 **eval theater**。发邮件不可逆但 PRD 没 confirmation gate——**autonomy 通胀**。这阶段直接 LangChain 是 **framework shopping**。逆提案：3 周做 workflow（LLM 起草 / 销售一键发 / log diff），50 封真实邮件 inter-rater 当 golden，目标改成"销售平均修改量 <30%"，跑通再谈 autonomy。 |
+| 「新游戏要 cyberpunk 风（霓虹 + 雨水反光），下周交 3 张关键 KV」<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | 停一下。"霓虹 + 雨水反光"是 **mood-board procrastination** 的开场——是 surface（Blade Runner 以来 40 年的 texture trick）不是 north-star。在已有 cyberpunk 光谱（2077 工业巴洛克 / Edgerunners 高饱手绘 / Cloudpunk voxel）里，你"删掉就不成立"的 3 个 keyword 是什么——"corporate sterile" 还是 "street-level grime"，"neon as warmth" 还是 "neon as threat"？答不出就别开始 KV。这失败叫 **Homogenization to trend**。 |
+| 「100 人问卷验证新功能值不值得开发」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 先停一下——method 和 decision 是错配的。"值不值得做"要 behavioral evidence（用户付了什么代价、绕了什么 workaround），survey 给的是 stated preference——经典 **stated-vs-revealed 错配**。N=100 无 segmentation 是 **deceptively-easy survey** 陷阱。更深：finding 是"用户不要" PM 真会砍吗？不会就是 **validate-the-design**。先把 decision owner / 延后成本 / "反向 finding 会不会被接受" 写来，再谈方法。 |
+| 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
 
-❌ *"Great initiative! Consider adding a risk assessment section. A/B test your templates. Align with stakeholders before launch."*
-
-✅ workflow 先于 agent（Anthropic BEA 立场）。「50% 自动处理」是 capability metric 不是 product metric——客户回复率才是。发邮件不可逆，但 PRD 里没有 confirmation gate 或 sandbox。3 周 + 无 eval pipeline = eval theater。
-
----
-
-**2.「新游戏要 cyberpunk 风，下周交 3 张关键 KV」** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera
-
-❌ *"Cyberpunk is a strong direction! Keep visual consistency, consider mood and color theory, gather plenty of references."*
-
-✅ 「cyberpunk + 霓虹 + 雨」是 reference，不是 visual DNA——这 3 个词在 ArtStation 重复率 >80%，直接画就是 Cult of Good Enough。下周之前必须做 keyword reduction：Blade Runner 的湿冷反乌托邦 vs Cyberpunk 2077 的饱和消费主义？两条路 lighting / silhouette / hierarchy 完全相反。没回答这个就别开始 KV。
-
----
-
-**3.「100 人问卷验证新功能值不值得做」** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren
-
-❌ *"Great approach! Make sure your sample is representative. Pre-test the questionnaire. Avoid leading questions."*
-
-✅ 「验证 X 值不值得做」用问卷是 method-decision mismatch。问卷答的是 attitudinal 不是 behavioral——用户说"会用"和真用是两件事 (Erika Hall: *you wanted to validate the design, but what you designed is the survey*)。先决定这是 1000 万投入还是 10 万投入：前者上 5 个 generative 访谈 + behavioral analytics；后者直接 fake-door test 看 CTR。问卷在两个 frame 里都不是 primary method。
-
----
-
-**4.「每周发 5 篇 LinkedIn 但 pipeline 没动」** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin
-
-❌ *"Great cadence! Post more consistently, engage with comments more, A/B test your hooks."*
-
-✅ frequency-driven calendar = vanity-metrics 决策。LinkedIn 76% engagement 来自 employee accounts 不是 brand page——主页发再多也只摸到 8% 潜在传播。Pipeline 没动是因为 measurement 断在 impression 层——没追到 SQL / opportunity 没法做决策。先做 4 件事：① documented strategy gate（你 ICP 是谁？）② core-asset → 5 channel fanout ③ employee advocacy (8x leverage) ④ attribution dashboard。Calendar 频次不是问题。
-
----
-
-**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝 hype 套话，critique-rubric 强制结构化检查，anti-patterns 把 "premature platform" / "Cult of Good Enough" / "method-decision mismatch" / "vanity-metrics 决策" 写成了具名失败模式。**立场是结构性的，不靠 prompt 调音**——详见 [工作原理](#工作原理)。
+**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝套话，critique-rubric 强制结构化检查，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些写成了**具名失败模式**——它们不是 prompt 临时想出来的，是 skill 定义里的固定 anchor。**立场是结构性的**——详见 [工作原理](#工作原理)。
 
 ---
 

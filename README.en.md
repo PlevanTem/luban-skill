@@ -14,41 +14,16 @@
 
 ## Before vs After
 
-> 4 real scenarios. Plain "act as a senior X" prompt vs the actual output of a luban-distilled skill. One row per skill shipped in this repo — click the slash command to open the skill directory.
+> 4 real scenarios, **subagent-tested invocation of skills shipped in this repo** (each subagent reads the skill's SOUL / SKILL / critique-rubric / anti-patterns before responding). The ✅ column is the skill's real output, editorially compressed for table density — **anchor names and structural moves preserved**. Click the slash command to open the skill directory.
 
-**1. "Ship an AI email assistant in 3 weeks, using LangChain"** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM
+| Scenario → Skill | ❌ Plain "act as senior X" prompt | ✅ luban-distilled skill output |
+|---|---|---|
+| "Ship an AI sales-email assistant in 3 weeks, use LangChain, target 50% emails handled by the agent"<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | You brought me a solution, not a problem. "50% handled" is a capability metric, not a product metric — sales' override rate on agent drafts is. Classic **eval theater**. Email send is irreversible but no confirmation gate in the PRD — **autonomy inflation**. LangChain at this stage = **framework shopping**. Counter: 3 weeks build a workflow (LLM drafts → sales one-clicks send → log the diff), 50 real emails + inter-rater as golden, target "sales avg edit on draft <30%". Talk autonomy after that ships. |
+| "New game wants a cyberpunk style (neon + wet asphalt), 3 key visuals due next week"<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | Stop. "Neon + wet asphalt" is **mood-board procrastination** — surface (a 40-year-old texture trick post-Blade Runner), not a north-star. Within the existing cyberpunk spectrum (2077 industrial baroque / Edgerunners saturated hand-paint / Cloudpunk voxel), what are your 3 "remove-and-it-collapses" keywords — "corporate sterile" or "street-level grime," "neon as warmth" or "neon as threat"? Can't answer? Don't paint the KV. This failure has a name: **Homogenization to trend**. |
+| "Run a 100-person survey to validate whether the new feature is worth building"<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | Stop. Method and decision don't match. "Worth building" needs behavioral evidence (what users currently pay, what workaround they run); a survey gives stated preference — classic **stated-vs-revealed mismatch**. N=100 with no segmentation is the **deceptively-easy survey** trap. Deeper: if the finding is "users don't want it," will the PM actually kill it? If not, that's **validate-the-design**. Write down decision owner / cost of delay / "will a reverse finding be accepted" first, then we talk method. |
+| "B2B SaaS ships 5 LinkedIn posts/week but pipeline isn't moving — is it cadence or quality?"<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | First, refuse the binary — both are craft-layer symptoms; the real cause is 99% system-layer. Stop at the **documented strategy gate**: who's your ICP, which buyer-journey stage decides on LinkedIn, what are your 3-5 content pillars, what's the quarterly theme? Without those, 5/week is a **frequency-driven calendar + vanity-metrics decisioning**. Then two system signals: brand page or employee advocacy? (employee reach is 8x brand page.) Are those 5 a fanout from one monthly core asset, or 5 independent topics? The latter is an **over-engineered frequency table**, not a buyer-journey × pillar matrix. |
 
-❌ *"Great initiative! Consider adding a risk assessment section. A/B test your templates. Align with stakeholders before launch."*
-
-✅ Workflow before agent (Anthropic BEA stance). "50% handled" is a capability metric, not a product metric — the reply rate to those emails is what matters. Email send is irreversible; the PRD has no confirmation gate or sandbox. 3 weeks + no eval pipeline = eval theater.
-
----
-
-**2. "New game wants a cyberpunk style, need 3 key visuals next week"** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera
-
-❌ *"Cyberpunk is a strong direction! Keep visual consistency, consider mood and color theory, gather plenty of references."*
-
-✅ "Cyberpunk + neon + rain" is reference, not visual DNA — those three words have >80% duplication on ArtStation. Painting straight from them is the Cult of Good Enough. Before next week you must do keyword reduction: Blade Runner's cold-damp dystopia, or Cyberpunk 2077's saturated consumerism? The two paths invert lighting / silhouette / hierarchy. Don't start the KV without answering.
-
----
-
-**3. "Run a 100-person survey to validate whether the new feature is worth building"** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren
-
-❌ *"Great approach! Make sure your sample is representative. Pre-test the questionnaire. Avoid leading questions."*
-
-✅ Using a survey to "validate whether X is worth building" is a method-decision mismatch. Surveys answer attitudinal, not behavioral — what users say they'll use ≠ what they use (Erika Hall: *you wanted to validate the design, but what you designed is the survey*). First decide whether this is a $10M call or a $100K call: the former wants 5 generative interviews + behavioral analytics; the latter wants a fake-door test on CTR. A survey is not the primary method in either frame.
-
----
-
-**4. "We ship 5 LinkedIn posts a week but pipeline isn't moving"** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin
-
-❌ *"Great cadence! Post more consistently, engage with comments more, A/B test your hooks."*
-
-✅ Frequency-driven calendar = vanity-metrics decisioning. 76% of LinkedIn engagement comes from employee accounts, not the brand page — the brand page only touches 8% of latent reach no matter how often you post. Pipeline isn't moving because measurement stops at impressions — no SQL/opportunity trail, no decision data. Do 4 things first: ① documented strategy gate (who's your ICP?) ② core-asset → 5-channel fanout ③ employee advocacy (8x leverage) ④ attribution dashboard. Cadence is not the problem.
-
----
-
-**The gap doesn't come from "a better prompt."** Every skill's SOUL.md refuses hype boilerplate by default, the critique-rubric forces a structured walk, and the anti-patterns name failure modes like "premature platform" / "Cult of Good Enough" / "method-decision mismatch" / "vanity-metrics decisioning" explicitly. **The stance is structural, not prompt-tuned** — see [How it works](#how-it-works).
+**The gap doesn't come from "a better prompt."** Every skill's SOUL.md refuses boilerplate by default; the critique-rubric forces a structured walk; the anti-patterns name failure modes like *"eval theater" / "autonomy inflation" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* — these aren't improvised in the prompt, they're fixed anchors in the skill definition. **The stance is structural** — see [How it works](#how-it-works).
 
 ---
 
