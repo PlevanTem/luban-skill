@@ -14,17 +14,41 @@
 
 ## Before / After 比較
 
-> 同じ「ひどい PRD」：「3 週間以内に AI セールスアシスタントをリリース。LangChain でオーケストレーション。自動メール返信＋ミーティング設定。目標は営業メールの 50% を agent が自動処理」
+> 4 つの実シナリオ。普通の prompt の「シニア X を演じる」 vs luban 蒸留 skill の実出力。1 行が本リポジトリで ship 済の 1 つの skill に対応 — slash コマンドのクリックで skill ディレクトリを開ける。
 
-**❌ 普通の prompt /「シニア AI PM を演じる」ペルソナ**
-> "Great initiative! Consider adding a risk assessment section. Make sure to A/B test your email templates. Align with stakeholders before launch."
->
-> *(典型的な LinkedIn-bio 出力：丁寧で、それっぽいが、本質を捉えていない)*
+**1.「3 週間で AI メールアシスタントをリリース、LangChain で」** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM
 
-**✅ luban で蒸留した `/infra-pm` — Mira the PM（v0.4.0 の実出力）**
-> これは feature の羅列であって、assumption-first ではありません。いきなり LangChain オーケストレーションに飛びついているのは Anthropic Building Effective Agents の核心スタンス「workflow を agent より優先」に反します。「50% 自動処理」は capability metric であって product metric ではない — 顧客が返信を受け取った後の返信率こそが本物です。メール送信は不可逆操作なのに、PRD に confirmation gate も sandbox もありません。3 週間 + eval pipeline 不在 = eval theater です。
+❌ *"Great initiative! Consider adding a risk assessment section. A/B test your templates. Align with stakeholders before launch."*
 
-差は「より良い prompt」から来ているのではありません。Mira の SOUL.md はデフォルトで framework hype を拒否し、critique-rubric は「capability metric vs product metric」の区別を強制し、anti-patterns は「premature platform」「eval theater」を明示的に名指します。**スタンスは構造的であり、prompt チューニングで補えるものではない** — 詳細は [How it works](#how-it-works) を参照。
+✅ Workflow を agent より優先（Anthropic BEA スタンス）。「50% 自動処理」は capability metric であって product metric ではない — 顧客の返信率こそが本物。メール送信は不可逆だが、PRD に confirmation gate も sandbox もない。3 週間 + eval pipeline 不在 = eval theater。
+
+---
+
+**2.「新ゲームを cyberpunk 風に、来週 3 枚の KV を納品」** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera
+
+❌ *"Cyberpunk is a strong direction! Keep visual consistency, consider mood and color theory, gather plenty of references."*
+
+✅ 「cyberpunk + ネオン + 雨」は reference であって visual DNA ではない — この 3 語は ArtStation で重複率 >80%。そのまま描けば Cult of Good Enough。来週までに keyword reduction が必須：Blade Runner の冷たく湿ったディストピアか、Cyberpunk 2077 の飽和した消費主義か？2 つの道で lighting / silhouette / hierarchy が完全に反転する。答えずに KV を始めるな。
+
+---
+
+**3.「100 人アンケートで新機能の投資価値を検証」** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren
+
+❌ *"Great approach! Make sure your sample is representative. Pre-test the questionnaire. Avoid leading questions."*
+
+✅ 「X が投資に値するか検証する」目的にアンケートを使うのは method-decision mismatch。アンケートが返すのは attitudinal であって behavioral ではない — ユーザーが「使う」と答えるのと実際に使うのは別物（Erika Hall: *you wanted to validate the design, but what you designed is the survey*）。先に決めるべきは、これが 10 億円規模の判断か 1000 万円規模の判断か：前者なら 5 件の generative インタビュー + behavioral analytics；後者なら fake-door test で CTR を見る。アンケートはどちらの frame でも primary method ではない。
+
+---
+
+**4.「週 5 本 LinkedIn 投稿しているが pipeline が動かない」** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin
+
+❌ *"Great cadence! Post more consistently, engage with comments more, A/B test your hooks."*
+
+✅ frequency-driven calendar = vanity-metrics 意思決定。LinkedIn engagement の 76% は employee accounts から、brand page からではない — brand page で何回投稿しても潜在リーチの 8% にしか触れない。Pipeline が動かないのは measurement が impression 層で切れているから — SQL / opportunity を追わずに意思決定はできない。先に 4 つ：① documented strategy gate（ICP は誰？）② core-asset → 5 channel fanout ③ employee advocacy (8x leverage) ④ attribution dashboard。Cadence は問題ではない。
+
+---
+
+**差は「より良い prompt」から来ているのではない** — 各 skill の SOUL.md はデフォルトで hype 定型句を拒否し、critique-rubric は構造化チェックを強制し、anti-patterns は「premature platform」「Cult of Good Enough」「method-decision mismatch」「vanity-metrics 意思決定」を具名失敗モードとして列挙する。**スタンスは構造的であり、prompt チューニングで補えるものではない** — 詳細は [How it works](#how-it-works) を参照。
 
 ---
 

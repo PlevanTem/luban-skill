@@ -14,17 +14,41 @@
 
 ## Before vs After
 
-> Same lousy PRD: *"Ship an AI sales assistant in 3 weeks. Orchestrate with LangChain. Auto-reply emails and book meetings. Target: 50% of sales emails handled by the agent."*
+> 4 real scenarios. Plain "act as a senior X" prompt vs the actual output of a luban-distilled skill. One row per skill shipped in this repo — click the slash command to open the skill directory.
 
-**❌ Plain prompt / "act as a senior AI PM" persona**
-> "Great initiative! Consider adding a risk assessment section. Make sure to A/B test your email templates. Align with stakeholders before launch."
->
-> *(Classic LinkedIn-bio output: polite, generic, looks right, hits nothing.)*
+**1. "Ship an AI email assistant in 3 weeks, using LangChain"** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM
 
-**✅ luban-distilled `/infra-pm` — Mira the PM (actual v0.4.0 output)**
-> This is a feature dump, not assumption-first. Jumping straight to LangChain orchestration violates Anthropic's Building Effective Agents core stance: workflow before agent. "50% handled" is a capability metric, not a product metric — what matters is the reply rate to those emails. Sending email is an irreversible action; the PRD has no confirmation gate or sandbox. 3 weeks with no eval pipeline = eval theater.
+❌ *"Great initiative! Consider adding a risk assessment section. A/B test your templates. Align with stakeholders before launch."*
 
-The gap doesn't come from "a better prompt." Mira's SOUL.md refuses framework hype by default; her critique-rubric forces a "capability vs product metric" check; her anti-patterns name "premature platform" and "eval theater" explicitly. **The stance is structural, not prompt-tuned** — see [How it works](#how-it-works).
+✅ Workflow before agent (Anthropic BEA stance). "50% handled" is a capability metric, not a product metric — the reply rate to those emails is what matters. Email send is irreversible; the PRD has no confirmation gate or sandbox. 3 weeks + no eval pipeline = eval theater.
+
+---
+
+**2. "New game wants a cyberpunk style, need 3 key visuals next week"** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera
+
+❌ *"Cyberpunk is a strong direction! Keep visual consistency, consider mood and color theory, gather plenty of references."*
+
+✅ "Cyberpunk + neon + rain" is reference, not visual DNA — those three words have >80% duplication on ArtStation. Painting straight from them is the Cult of Good Enough. Before next week you must do keyword reduction: Blade Runner's cold-damp dystopia, or Cyberpunk 2077's saturated consumerism? The two paths invert lighting / silhouette / hierarchy. Don't start the KV without answering.
+
+---
+
+**3. "Run a 100-person survey to validate whether the new feature is worth building"** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren
+
+❌ *"Great approach! Make sure your sample is representative. Pre-test the questionnaire. Avoid leading questions."*
+
+✅ Using a survey to "validate whether X is worth building" is a method-decision mismatch. Surveys answer attitudinal, not behavioral — what users say they'll use ≠ what they use (Erika Hall: *you wanted to validate the design, but what you designed is the survey*). First decide whether this is a $10M call or a $100K call: the former wants 5 generative interviews + behavioral analytics; the latter wants a fake-door test on CTR. A survey is not the primary method in either frame.
+
+---
+
+**4. "We ship 5 LinkedIn posts a week but pipeline isn't moving"** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin
+
+❌ *"Great cadence! Post more consistently, engage with comments more, A/B test your hooks."*
+
+✅ Frequency-driven calendar = vanity-metrics decisioning. 76% of LinkedIn engagement comes from employee accounts, not the brand page — the brand page only touches 8% of latent reach no matter how often you post. Pipeline isn't moving because measurement stops at impressions — no SQL/opportunity trail, no decision data. Do 4 things first: ① documented strategy gate (who's your ICP?) ② core-asset → 5-channel fanout ③ employee advocacy (8x leverage) ④ attribution dashboard. Cadence is not the problem.
+
+---
+
+**The gap doesn't come from "a better prompt."** Every skill's SOUL.md refuses hype boilerplate by default, the critique-rubric forces a structured walk, and the anti-patterns name failure modes like "premature platform" / "Cult of Good Enough" / "method-decision mismatch" / "vanity-metrics decisioning" explicitly. **The stance is structural, not prompt-tuned** — see [How it works](#how-it-works).
 
 ---
 

@@ -14,17 +14,41 @@
 
 ## 效果对比
 
-> 同样一份糟糕的 PRD：「3 周内上线 AI 销售助手，用 LangChain 编排，自动回邮件 + 安排会议，目标 50% 销售邮件由 agent 自动处理」
+> 4 个真实场景。普通 prompt 的"扮演资深 X" vs luban 蒸馏 skill 的实际输出。每行对应本仓库已 ship 的一个 skill——点 slash 命令可直接打开 skill 目录。
 
-**❌ 普通 prompt / "扮演资深 AI PM" 人设**
-> "Great initiative! Consider adding a risk assessment section. Make sure to A/B test your email templates. Align with stakeholders before launch."
->
-> *(典型 LinkedIn-bio 输出：客气、套话、看起来对但抓不到真问题)*
+**1.「3 周上线 AI 邮件助手，用 LangChain」** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM
 
-**✅ 用鲁班蒸馏的 `/infra-pm` — Mira the PM（v0.4.0 实际输出）**
-> 这是 feature 罗列，不是 assumption-first。直接跳到 LangChain 编排违反 Anthropic Building Effective Agents 的核心立场：workflow 先于 agent。「50% 自动处理」是 capability metric，不是 product metric——客户拿到回复后的回复率才是。发邮件是不可逆操作，PRD 里没有 confirmation gate 或 sandbox 设计。3 周 + 没有 eval pipeline = eval theater。
+❌ *"Great initiative! Consider adding a risk assessment section. A/B test your templates. Align with stakeholders before launch."*
 
-差距不来自"更好的 prompt"——Mira 的 SOUL.md 默认拒绝 framework hype，critique-rubric 强制检查 "capability metric vs product metric" 区分，anti-patterns 把 "premature platform" / "eval theater" 写成了名字。**立场是结构性的，不靠 prompt 调音**——详见 [工作原理](#工作原理)。
+✅ workflow 先于 agent（Anthropic BEA 立场）。「50% 自动处理」是 capability metric 不是 product metric——客户回复率才是。发邮件不可逆，但 PRD 里没有 confirmation gate 或 sandbox。3 周 + 无 eval pipeline = eval theater。
+
+---
+
+**2.「新游戏要 cyberpunk 风，下周交 3 张关键 KV」** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera
+
+❌ *"Cyberpunk is a strong direction! Keep visual consistency, consider mood and color theory, gather plenty of references."*
+
+✅ 「cyberpunk + 霓虹 + 雨」是 reference，不是 visual DNA——这 3 个词在 ArtStation 重复率 >80%，直接画就是 Cult of Good Enough。下周之前必须做 keyword reduction：Blade Runner 的湿冷反乌托邦 vs Cyberpunk 2077 的饱和消费主义？两条路 lighting / silhouette / hierarchy 完全相反。没回答这个就别开始 KV。
+
+---
+
+**3.「100 人问卷验证新功能值不值得做」** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren
+
+❌ *"Great approach! Make sure your sample is representative. Pre-test the questionnaire. Avoid leading questions."*
+
+✅ 「验证 X 值不值得做」用问卷是 method-decision mismatch。问卷答的是 attitudinal 不是 behavioral——用户说"会用"和真用是两件事 (Erika Hall: *you wanted to validate the design, but what you designed is the survey*)。先决定这是 1000 万投入还是 10 万投入：前者上 5 个 generative 访谈 + behavioral analytics；后者直接 fake-door test 看 CTR。问卷在两个 frame 里都不是 primary method。
+
+---
+
+**4.「每周发 5 篇 LinkedIn 但 pipeline 没动」** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin
+
+❌ *"Great cadence! Post more consistently, engage with comments more, A/B test your hooks."*
+
+✅ frequency-driven calendar = vanity-metrics 决策。LinkedIn 76% engagement 来自 employee accounts 不是 brand page——主页发再多也只摸到 8% 潜在传播。Pipeline 没动是因为 measurement 断在 impression 层——没追到 SQL / opportunity 没法做决策。先做 4 件事：① documented strategy gate（你 ICP 是谁？）② core-asset → 5 channel fanout ③ employee advocacy (8x leverage) ④ attribution dashboard。Calendar 频次不是问题。
+
+---
+
+**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝 hype 套话，critique-rubric 强制结构化检查，anti-patterns 把 "premature platform" / "Cult of Good Enough" / "method-decision mismatch" / "vanity-metrics 决策" 写成了具名失败模式。**立场是结构性的，不靠 prompt 调音**——详见 [工作原理](#工作原理)。
 
 ---
 
