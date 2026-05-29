@@ -276,6 +276,10 @@
 ├── README.md                         # 本文件（中文，默认）
 ├── README.en.md                      # English
 ├── README.ja.md                      # 日本語
+├── intro.png                         # banner（双语 alt-text）
+├── usage.svg                         # 快速开始插图 · 中文
+├── usage.en.svg                      # 快速开始插图 · English
+├── usage.ja.svg                      # 快速开始插图 · 日本語
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # 版本历史
 ├── ARCHITECTURE_v0.2.md              # 架构决策稿

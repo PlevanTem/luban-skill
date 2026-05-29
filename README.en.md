@@ -41,7 +41,7 @@ luban distills any craft — B2B SaaS product manager, criminal defense lawyer, 
 ## Quick Start
 
 <p align="center">
-  <img src="./usage.svg" alt="luban usage in 3 steps: (1) you feed seeds (critique reviews / postmortems / standards docs / interview banks / failure cases, or enter seed-prospecting mode with nothing) → (2) luban distills (5-stage pipeline: taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow, output to .claude/skills/&lt;role&gt;/) → (3) you summon /&lt;role&gt; and get real critique, not boilerplate" width="1100" />
+  <img src="./usage.en.svg" alt="luban usage in 3 steps: (1) you feed seeds (critique reviews / postmortems / standards docs / interview banks / failure cases, or enter seed-prospecting mode with nothing) → (2) luban distills (5-stage pipeline: taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow, output to .claude/skills/&lt;role&gt;/) → (3) you summon /&lt;role&gt; and get real critique, not boilerplate" width="1100" />
 </p>
 
 1. **Install the skill** — this repo is dogfood-shaped: open it in Claude Code and it auto-loads from `.claude/skills/luban-skill/`. To install globally:
@@ -267,8 +267,12 @@ This repo is itself a project-level dogfood layout for Claude Code — all skill
 ```
 ./
 ├── README.md                         # Chinese (default)
-├── README.en.md                      # English
+├── README.en.md                      # English (this file)
 ├── README.ja.md                      # Japanese
+├── intro.png                         # banner (bilingual alt-text)
+├── usage.svg                         # quickstart illustration · zh
+├── usage.en.svg                      # quickstart illustration · en
+├── usage.ja.svg                      # quickstart illustration · ja
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # Version history
 ├── ARCHITECTURE_v0.2.md              # Architecture decision draft

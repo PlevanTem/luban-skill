@@ -41,7 +41,7 @@ luban はあらゆる手仕事 — B2B SaaS プロダクトマネージャー、
 ## クイックスタート
 
 <p align="center">
-  <img src="./usage.svg" alt="luban 使い方 3 ステップ：① シードを投入（critique reviews / postmortems / standards docs / interview banks / failure cases、またはシードなしで prospecting mode へ）→ ② luban が蒸留（5 段階パイプライン：taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow を .claude/skills/&lt;role&gt;/ に出力）→ ③ /&lt;role&gt; で呼び出し、定型句ではない本物の専門家レビューを Claude Code で受け取る" width="1100" />
+  <img src="./usage.ja.svg" alt="luban 使い方 3 ステップ：① シードを投入（critique reviews / postmortems / standards docs / interview banks / failure cases、またはシードなしで prospecting mode へ）→ ② luban が蒸留（5 段階パイプライン：taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow を .claude/skills/&lt;role&gt;/ に出力）→ ③ /&lt;role&gt; で呼び出し、定型句ではない本物の専門家レビューを Claude Code で受け取る" width="1100" />
 </p>
 
 1. **Skill のインストール** — 本リポジトリ自体が dogfood レイアウト：Claude Code でこのリポジトリを開けば `.claude/skills/luban-skill/` から自動ロードされます。グローバルにインストールするには：
@@ -245,6 +245,10 @@ luban はこの両方を拒否します。**Capability は critique corpora / st
 ├── README.md                         # 中国語（デフォルト）
 ├── README.en.md                      # 英語
 ├── README.ja.md                      # 日本語（本ファイル）
+├── intro.png                         # バナー（バイリンガル alt-text）
+├── usage.svg                         # クイックスタート図 · zh
+├── usage.en.svg                      # クイックスタート図 · en
+├── usage.ja.svg                      # クイックスタート図 · ja
 ├── LICENSE                           # MIT
 ├── CHANGELOG.md                      # バージョン履歴
 ├── ARCHITECTURE_v0.2.md              # アーキテクチャ決定ドラフト
