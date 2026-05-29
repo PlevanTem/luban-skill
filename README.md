@@ -8,33 +8,31 @@
   <img src="./intro.png" alt="luban-skill: 蒸馏专业方法论，而不是刻板印象 — distill expert methodology, not LinkedIn bios. 左侧原材料（critique reviews / postmortems / interview banks / standards docs / failure cases）经蒸馏器输出为结构化 SKILL 文档（anchors / critique rubric / honest limits）" width="780" />
 </p>
 
+<p align="center">
+  <a href="#"><img src="https://img.shields.io/badge/version-v0.4.0-green" alt="Version: v0.4.0"></a>
+  <a href="#"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License: MIT"></a>
+  <a href="#"><img src="https://img.shields.io/badge/skill-Claude%20Code-orange" alt="Skill: Claude Code"></a>
+</p>
+
 > **Nuwa 蒸馏人，鲁班蒸馏专业方法论。**
 > *Nuwa distills people. luban distills disciplines.*
 
 **把 "AI 扮演专家" 升级为 "AI 真的懂这个专业"。**
 
-- **是什么** · 把任何一门手艺（B2B SaaS PM / 刑事辩护律师 / UX 设计总监…）的方法论蒸馏成 Claude Code Skill，不是"扮演资深 X"的人设
-- **给谁用** · 写 PRD / 做合规 / 排设计稿 / 做内容运营——想要真专家的批判，而不是 LinkedIn-bio 套话
+- **是什么** · 把任何一个行业专家（B2B SaaS PM / 刑事辩护律师 / UX 设计总监…）的方法论蒸馏成 Claude Code Skill，不是"扮演资深 X"的人设
+- **给谁用** · 想要真专家的批判与协同，而不是像 LinkedIn-bio 刻板印象的套话
 - **怎么试** · 在 Claude Code 输入 `用鲁班蒸馏一个 B2B SaaS PM 角色` → 完整 skill 落到 `.claude/skills/<role>/`，自动注册 `/<role>` slash 命令
-
-[![Version: v0.4.0](https://img.shields.io/badge/version-v0.4.0-green)]()
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)]()
-[![Skill: Claude Code](https://img.shields.io/badge/skill-Claude%20Code-orange)]()
 
 ---
 
-## 效果对比
+## Why luban (not another persona prompt)
 
-> 4 个真实场景，**subagent 实测调用本仓库已 ship 的 skill**（subagent 读完该 skill 的 SOUL / SKILL / critique-rubric / anti-patterns 后回应）。✅ 列是 skill 的真实输出，为表格紧凑做 editorial 压缩，**anchor 命名与结构性 move 保留原貌**。点 slash 命令直达 skill 目录。
+市面上 90% "AI 扮演专家" 项目栽在两件事上：
 
-| 场景 → Skill | ❌ "扮演资深 X" 通用 prompt | ✅ luban 蒸馏 skill 实测 |
-|---|---|---|
-| 「3 周上线 AI 销售邮件助手，用 LangChain，目标 50% 邮件 agent 自动处理」<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 你带来的是解决方案不是问题。「50% 自动处理」是 capability metric 不是 product metric——销售对草稿的 override 率才是，典型 **eval theater**。发邮件不可逆但 PRD 没 confirmation gate——**autonomy 通胀**。这阶段直接 LangChain 是 **framework shopping**。逆提案：3 周做 workflow（LLM 起草 / 销售一键发 / log diff），50 封真实邮件 inter-rater 当 golden，目标改成"销售平均修改量 <30%"，跑通再谈 autonomy。 |
-| 「新游戏要 cyberpunk 风（霓虹 + 雨水反光），下周交 3 张关键 KV」<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | 停一下。"霓虹 + 雨水反光"是 **mood-board procrastination** 的开场——是 surface（Blade Runner 以来 40 年的 texture trick）不是 north-star。在已有 cyberpunk 光谱（2077 工业巴洛克 / Edgerunners 高饱手绘 / Cloudpunk voxel）里，你"删掉就不成立"的 3 个 keyword 是什么——"corporate sterile" 还是 "street-level grime"，"neon as warmth" 还是 "neon as threat"？答不出就别开始 KV。这失败叫 **Homogenization to trend**。 |
-| 「100 人问卷验证新功能值不值得开发」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 先停一下——method 和 decision 是错配的。"值不值得做"要 behavioral evidence（用户付了什么代价、绕了什么 workaround），survey 给的是 stated preference——经典 **stated-vs-revealed 错配**。N=100 无 segmentation 是 **deceptively-easy survey** 陷阱。更深：finding 是"用户不要" PM 真会砍吗？不会就是 **validate-the-design**。先把 decision owner / 延后成本 / "反向 finding 会不会被接受" 写来，再谈方法。 |
-| 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
+1. **Vibes persona**：`"You are a senior X with 20 years of experience"` 这类描述性 prompt 产出 LinkedIn 简介式 voice，看起来对、抓不到真问题。
+2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
 
-**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝套话，critique-rubric 强制结构化检查，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些写成了**具名失败模式**——它们不是 prompt 临时想出来的，是 skill 定义里的固定 anchor。**立场是结构性的**——详见 [工作原理](#工作原理)。
+鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
 
 ---
 
@@ -48,6 +46,19 @@
 - **定游戏视觉方向** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera，关键词驱动 visual DNA，拒绝 mood-board procrastination
 
 **自己没有现成的 skill？** 用 luban 蒸馏一个（律师 / 财务顾问 / 投资人 / design director / 合规 / 并购…），鲁班不取代该专业的人，**它把"判断该专业活儿做得好不好的标准"工程化成可执行的 Skill**。
+
+### 效果对比
+
+> 4 个真实场景，**subagent 实测调用本仓库已 ship 的 skill**（subagent 读完该 skill 的 SOUL / SKILL / critique-rubric / anti-patterns 后回应）。✅ 列是 skill 的真实输出，为表格紧凑做 editorial 压缩，**anchor 命名与结构性 move 保留原貌**。点 slash 命令直达 skill 目录。
+
+| 场景 → Skill | ❌ "扮演资深 X" 通用 prompt | ✅ luban 蒸馏 skill 实测 |
+|---|---|---|
+| 「3 周上线 AI 销售邮件助手，用 LangChain，目标 50% 邮件 agent 自动处理」<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 你带来的是解决方案不是问题。「50% 自动处理」是 capability metric 不是 product metric——销售对草稿的 override 率才是，典型 **eval theater**。发邮件不可逆但 PRD 没 confirmation gate——**autonomy 通胀**。这阶段直接 LangChain 是 **framework shopping**。逆提案：3 周做 workflow（LLM 起草 / 销售一键发 / log diff），50 封真实邮件 inter-rater 当 golden，目标改成"销售平均修改量 <30%"，跑通再谈 autonomy。 |
+| 「新游戏要 cyberpunk 风（霓虹 + 雨水反光），下周交 3 张关键 KV」<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | 停一下。"霓虹 + 雨水反光"是 **mood-board procrastination** 的开场——是 surface（Blade Runner 以来 40 年的 texture trick）不是 north-star。在已有 cyberpunk 光谱（2077 工业巴洛克 / Edgerunners 高饱手绘 / Cloudpunk voxel）里，你"删掉就不成立"的 3 个 keyword 是什么——"corporate sterile" 还是 "street-level grime"，"neon as warmth" 还是 "neon as threat"？答不出就别开始 KV。这失败叫 **Homogenization to trend**。 |
+| 「100 人问卷验证新功能值不值得开发」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 先停一下——method 和 decision 是错配的。"值不值得做"要 behavioral evidence（用户付了什么代价、绕了什么 workaround），survey 给的是 stated preference——经典 **stated-vs-revealed 错配**。N=100 无 segmentation 是 **deceptively-easy survey** 陷阱。更深：finding 是"用户不要" PM 真会砍吗？不会就是 **validate-the-design**。先把 decision owner / 延后成本 / "反向 finding 会不会被接受" 写来，再谈方法。 |
+| 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
+
+**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝套话，critique-rubric 强制结构化检查，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些写成了**具名失败模式**——它们不是 prompt 临时想出来的，是 skill 定义里的固定 anchor。**立场是结构性的**——详见 [工作原理](#工作原理)。
 
 ---
 
@@ -93,17 +104,6 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 装完后任何项目里都能召唤 luban 蒸馏新 skill。
 
 </details>
-
----
-
-## Why luban (not another persona prompt)
-
-市面上 90% "AI 扮演专家" 项目栽在两件事上：
-
-1. **Vibes persona**：`"You are a senior X with 20 years of experience"` 这类描述性 prompt 产出 LinkedIn 简介式 voice，看起来对、抓不到真问题。
-2. **LLM 凭空生成 capability**：让 LLM 自己 "describe what a senior X knows" —— 这是 stereotype 再生产，是大多数 persona repo 的根本失败。
-
-鲁班拒绝这两条。**Capability 必须从 critique corpora / 标准文档 / 失败案例反推**，不是从 LLM 想象拉出。这是结构性立场，不是 prompt 调音能补的。
 
 ---
 
@@ -282,8 +282,9 @@ v0.3.0 已 ship——方法论内化重构完成，鲁班独立运行。v0.4.0 �
 
 </details>
 
-<details>
-<summary><b>致谢与参考</b></summary>
+---
+
+## 致谢与参考
 
 luban 不是凭空长出来的。下面这些工作各自解决了"如何把一个角色 / 人格 / 专业能力工程化"的一部分，luban 站在它们的肩膀上，选了一条不同的路径（蒸馏 sub-specialty 的方法论，不是蒸馏个人 / 不做 persona portability）。
 
@@ -293,8 +294,6 @@ luban 不是凭空长出来的。下面这些工作各自解决了"如何把一�
 - **SOUL 方法 —— [OpenClaw `SOUL.md` 概念](https://docs.openclaw.ai/concepts/soul)** — "Where your agent's voice lives" 确立了 SOUL.md 作为人格层独立文件的定位。
 
 如果你的工作和 luban 相关、想被列入此处，欢迎开 issue。
-
-</details>
 
 ---
 
