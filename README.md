@@ -31,10 +31,10 @@
 
 **本仓库已 ship 的 4 个 skill** 直接覆盖这些场景：
 
-- **写 PRD / 评 AI agent 基建** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM，0→1 PMF 阶段真懂 Anthropic Building Effective Agents 立场，挑刺不套话
-- **做内容运营 / 排海内外社媒** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin，B2B SaaS 跨地区，measurement-first + employee 8x leverage
-- **做 UX 调研决策** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren，Erika Hall 路线先质疑 method-decision fit，不是优化问卷
-- **定游戏视觉方向** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera，关键词驱动 visual DNA，拒绝 mood-board procrastination
+- **写 PRD / 评 AI agent 基建** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM，0→1 PMF 阶段真懂 Anthropic Building Effective Agents 立场，帮你重排 PRD assumption 顺序 + 设计 eval pipeline + 评 framework 选择
+- **做内容运营 / 排海内外社媒** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin，B2B SaaS 跨地区，帮你从 ICP / buyer journey 出发排 calendar 矩阵 + core-asset fanout + employee advocacy 配置
+- **做 UX 调研决策** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren，Erika Hall 路线，帮你对齐 method-decision fit + 设计 generative / behavioral / fake-door 组合方案
+- **定游戏视觉方向** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera，帮你从 reference 走到 visual DNA + 定 keyword cluster + 出 art bible v0.1
 
 ### 效果对比
 
@@ -47,7 +47,9 @@
 | 「100 人问卷验证新功能值不值得开发」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 先停一下——method 和 decision 是错配的。"值不值得做"要 behavioral evidence（用户付了什么代价、绕了什么 workaround），survey 给的是 stated preference——经典 **stated-vs-revealed 错配**。N=100 无 segmentation 是 **deceptively-easy survey** 陷阱。更深：finding 是"用户不要" PM 真会砍吗？不会就是 **validate-the-design**。先把 decision owner / 延后成本 / "反向 finding 会不会被接受" 写来，再谈方法。 |
 | 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
 
-**差距不来自"更好的 prompt"**——每个 skill 的 SOUL.md 默认拒绝套话，critique-rubric 强制结构化检查，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些写成了**具名失败模式**——它们不是 prompt 临时想出来的，是 skill 定义里的固定 anchor。**立场是结构性的**——详见 [工作原理](#工作原理)。
+> 以上 4 行展示的是 **坏前提下** skills 的反应——critique + 反向方案。**正前提下**它们直接跟你一起干活（design PRD 结构 / 排 content calendar / 设计 study / 出 art bible），workflow 段在各 skill 的 [SKILL.md](.claude/skills/) 里。
+
+**差距不来自"更好的 prompt"**——每个 skill 自带 stance 与 workflow，critique-rubric 给结构化判断标准，anti-patterns 把 *"eval theater" / "autonomy 通胀" / "Homogenization to trend" / "validate-the-design" / "frequency-driven calendar" / "deceptively-easy survey"* 这些列为**具名失败模式**（识别 + 劝退坏方案的工具）——它们不是 prompt 临时编出来的，是 skill 定义里的固定 anchor。**方法论是结构性嵌入的**——详见 [工作原理](#工作原理)。
 
 ---
 

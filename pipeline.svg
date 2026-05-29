@@ -256,7 +256,7 @@
 
   <!-- ====== Bottom tagline ====== -->
   <text x="700" y="510" text-anchor="middle" class="tagline">
-    从一堆原料 critique → 一个可被 <tspan font-family="ui-monospace, monospace" font-weight="600">/&lt;role&gt;</tspan> 召唤的会挑刺真专家
+    从原料到一个可被 <tspan font-family="ui-monospace, monospace" font-weight="600">/&lt;role&gt;</tspan> 召唤、真懂行业方法论的协作专家
   </text>
 
 </svg>
