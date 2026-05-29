@@ -48,7 +48,7 @@
     <text x="50" y="66" text-anchor="middle" class="step-num">1</text>
 
     <!-- title block -->
-    <text x="88" y="55" class="panel-h">你投料</text>
+    <text x="88" y="55" class="panel-h">你说诉求</text>
     <text x="88" y="74" class="panel-sub">YOUR INPUTS</text>
 
     <!-- doc rows -->

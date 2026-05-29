@@ -84,23 +84,37 @@
   <img src="./usage.svg" alt="鲁班使用说明 3 步：① 你投料（critique reviews / postmortems / standards docs / interview banks / failure cases，或零种子进入勘探模式）→ ② 鲁班蒸馏（5 stage pipeline：taxonomy mining / anchor / 5:3:2 progressive spec / critique rubric / tools &amp; workflow，落到 .claude/skills/&lt;role&gt;/）→ ③ 你召唤 /&lt;role&gt;，在 Claude Code 里得到会挑刺、不是套话的真专业评审" width="1100" />
 </p>
 
-**直接试一下**——进入本仓库时 Claude Code 会自动加载 luban-skill。在 Claude Code 对话框输入：
+进入本仓库时 Claude Code 会自动加载 luban-skill。在对话框里选**两种方式之一**：
 
-```
-用鲁班蒸馏一个 B2B SaaS PM 角色，我已经有 30 份 design review 实录
-```
+> **🅰 你已经有种子材料**（critique 实录 / postmortems / 标准文档 / 面试题库 / 失败案例）
+>
+> ```
+> 用鲁班蒸馏一个 B2B SaaS PM 角色，我已经有 30 份 design review 实录
+> ```
 
-或者**没有种子材料**：
+> **🅱 你手头什么都没有** → luban 进入**种子勘探模式**
+>
+> ```
+> 用鲁班帮我蒸馏一个刑事辩护律师，我手头什么都没有
+> ```
+>
+> 给你一份"该 sub-specialty 的 critique corpora 候选清单"——去找什么、在哪找、按什么顺序找。
 
-```
-用鲁班帮我蒸馏一个刑事辩护律师，我手头什么都没有
-```
+---
 
-luban 会进入**种子勘探模式**，给你一份"该 sub-specialty 的 critique corpora 候选清单"——告诉你去找什么、在哪找、按什么顺序找。
+**产物** —— 一份完整角色目录落到 `.claude/skills/<short-slug>/`：
 
-**产物**：一份完整角色目录落到 `.claude/skills/<short-slug>/`，含 `SOUL.md` + `SKILL.md` + `identity.json` + capability map + critique rubric + anti-patterns + 诚实账单 `GENERATION_REPORT.md`。Claude Code 自动发现，`/<short-slug>` 在浮动面板可见。
+| 文件 | 作用 |
+|---|---|
+| `SOUL.md` | 人格 / 语气 / stance |
+| `SKILL.md` | Tier-1 能力 + workflow + sacred constraints |
+| `identity.json` | sub-specialty / 哲学 / honest limits |
+| `references/capability-map.md` | 完整能力树 |
+| `references/critique-rubric.md` | Before / After 自检 |
+| `references/anti-patterns.md` | 具名失败模式 |
+| `GENERATION_REPORT.md` | 诚实账单 + anti-pattern audit |
 
-**浏览全部蒸馏角色**：输入 `/agents`，结构化 roster 按 family 分组渲染。
+Claude Code 自动发现，`/<short-slug>` 在浮动面板可见。输入 `/agents` 浏览全部蒸馏角色——结构化 roster 按 family 分组渲染。
 
 <details>
 <summary>装到全局自用 / 在其他项目调用</summary>
@@ -152,29 +166,14 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 
 **最容易引起分歧的是立场 2 和立场 7**——这两条把"快速生成体验"和"严肃方法论"放在了对立面。鲁班选择了后者。如果你的产品愿景是前者，鲁班不适合你。
 
-<details>
-<summary>展开：5 阶段蒸馏流水线 + 完整架构图</summary>
+### 蒸馏流水线（5 阶段）
 
-```
-输入领域 + sub-specialty + 种子
-    ↓
-[种子门槛检查] —— 零种子则进入勘探模式
-    ↓
-[Step 1] 领域族判定 → domain-families.md (5 族骨架)
-    ↓
-[Step 2] 5 Stage Pipeline:
-    1. Capability Taxonomy Mining       → capability-map.md
-    2. Anchor                           → identity.json
-    3. Progressive Specification (5:3:2)→ SKILL.md + clusters
-    4. Critique Rubric                  → critique-rubric.md
-    5. Tools & Workflow                 → 嵌入 SKILL.md
-    ↓
-[Step 3] 人格层 + 诚实账单 → SOUL.md + anti-patterns.md + evolution.jsonl
-    ↓
-[Step 4] 6 check validation (内容 4 + 结构 2)
-    ↓
-[Step 5] 交付目录 + GENERATION_REPORT.md
-```
+<p align="center">
+  <img src="./pipeline.svg" alt="luban 5 阶段蒸馏流水线：① 挖能力树（TAXONOMY MINING，输出 capability-map.md）→ ② 钉身份锚（ANCHOR，输出 identity.json）→ ③ 5:3:2 分层（PROGRESSIVE SPEC，输出 SKILL.md + clusters）→ ④ 编批判尺（CRITIQUE RUBRIC，输出 critique-rubric.md）→ ⑤ 出工具集（TOOLS & WORKFLOW，输出完整角色目录 + GENERATION_REPORT.md）。从一堆原料 critique 到一个可被 /<role> 召唤的会挑刺真专家。" width="1100" />
+</p>
+
+<details>
+<summary>展开完整架构图（含种子门槛检查 / 领域族判定 / 人格层 / 6-check validation）</summary>
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -248,6 +247,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 ./
 ├── README.md / README.en.md / README.ja.md   # 多语言入口（中文默认）
 ├── intro.png / usage.svg(.en/.ja)            # banner + 快速开始插图
+├── pipeline.svg                              # 5 阶段蒸馏流水线插图
 ├── LICENSE / CHANGELOG.md / ARCHITECTURE_v0.2.md
 └── .claude/skills/
     ├── INDEX.md                              # 蒸馏角色注册表
