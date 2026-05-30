@@ -31,7 +31,7 @@
 
 **本リポジトリで ship 済の 4 skill** が以下のシナリオを直接カバー：
 
-- **PRD を書く / AI agent インフラのレビュー** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM。0→1 PMF 段階、Anthropic Building Effective Agents スタンスに精通。PRD の assumption 順序を再整理 + eval pipeline を設計 + framework 選択を評価。
+- **PRD を書く / AI agent インフラのレビュー** → [`/ai-pm`](.claude/skills/ai-pm/) · Mira the PM。0→1 PMF 段階、Anthropic Building Effective Agents スタンスに精通。PRD の assumption 順序を再整理 + eval pipeline を設計 + framework 選択を評価。
 - **コンテンツ運営 / 国内外 SNS 編成** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin。B2B SaaS クロスリージョン。ICP / buyer journey から calendar マトリクス + core-asset fanout + employee advocacy 構成を組み立てる。
 - **UX 調査の意思決定** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren。Erika Hall ライン。method-decision fit を整える + generative / behavioral / fake-door の組み合わせ調査を設計。
 - **ゲーム視覚方向の定義** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera。reference から visual DNA へ + keyword cluster を確定 + art bible v0.1 を ship。
@@ -42,7 +42,7 @@
 
 | シナリオ → Skill | ❌ 「シニア X を演じる」普通の prompt | ✅ luban 蒸留 skill 実測 |
 |---|---|---|
-| 「3 週間で AI セールスメールアシスタントをリリース、LangChain で、目標は 50% を agent が自動処理」<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 持ち込んでいるのは解決策で、問題ではない。「50% 自動処理」は capability metric であって product metric ではない — sales が agent ドラフトを override する率こそ。典型的な **eval theater**。メール送信は不可逆だが PRD に confirmation gate がない — **autonomy インフレ**。この段階で LangChain は **framework shopping**。逆提案：3 週間で workflow を作る（LLM 起草 → sales ワンクリック送信 → diff をログ）、実メール 50 件 + inter-rater を golden、目標を「sales の平均修正量 <30%」に変える。動いてから autonomy を語る。 |
+| 「3 週間で AI セールスメールアシスタントをリリース、LangChain で、目標は 50% を agent が自動処理」<br>→ [`/ai-pm`](.claude/skills/ai-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 持ち込んでいるのは解決策で、問題ではない。「50% 自動処理」は capability metric であって product metric ではない — sales が agent ドラフトを override する率こそ。典型的な **eval theater**。メール送信は不可逆だが PRD に confirmation gate がない — **autonomy インフレ**。この段階で LangChain は **framework shopping**。逆提案：3 週間で workflow を作る（LLM 起草 → sales ワンクリック送信 → diff をログ）、実メール 50 件 + inter-rater を golden、目標を「sales の平均修正量 <30%」に変える。動いてから autonomy を語る。 |
 | 「新ゲームを cyberpunk 風に（ネオン + 濡れた路面の反射）、来週 3 枚の KV を納品」<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | 停止。「ネオン + 濡れた路面」は **mood-board procrastination** — Blade Runner 以降 40 年使い回された texture trick で、north-star ではない。既存 cyberpunk スペクトル（2077 工業バロック / Edgerunners 高彩度手描き / Cloudpunk ボクセル）の中で、君たちの「削れば成立しない」3 つの keyword は何か — "corporate sterile" か "street-level grime" か、"neon as warmth" か "neon as threat" か？答えられないなら KV を描き始めるな。この失敗には名前がある：**Homogenization to trend**。 |
 | 「100 人アンケートで新機能の投資価値を検証」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 停止。method と decision が噛み合っていない。「投資に値するか」は behavioral evidence が必要（ユーザーが今払っているコスト、回している workaround）。survey が返すのは stated preference — 古典的な **stated-vs-revealed 不一致**。N=100 で segmentation なしは **deceptively-easy survey** の罠。さらに：finding が「ユーザーは要らない」と出たら、PM は本当にキルするのか？しないなら **validate-the-design**。decision owner / 判断遅延のコスト /「逆 finding が受け入れられるか」を先に書き出してから方法を話す。 |
 | 「B2B SaaS で週 5 本 LinkedIn 投稿しているが pipeline が動かない — cadence 不足か質か？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | まず二択を却下する — 両方 craft 層の症状、真因は 99% system 層。**documented strategy gate** で停まる：ICP は誰、buyer journey のどの段階で LinkedIn が決定するのか、3-5 の content pillar、四半期テーマ — 答えられないなら週 5 本は **frequency-driven calendar + vanity-metrics 意思決定**。次に system シグナルを 2 つ：brand page か employee advocacy か？（employee reach は brand page の 8 倍）5 本は 1 つの monthly core asset の fanout か、5 つの独立トピックか？後者は **over-engineered frequency table** で、buyer-journey × pillar マトリクスではない。 |
@@ -143,7 +143,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 
 | Sub-specialty | Slash | 表示名 | 状態 |
 |---|---|---|---|
-| Agent infrastructure PM (0→1 PMF) | [`/infra-pm`](.claude/skills/infra-pm/) | Mira the PM | ✅ v0.3.0 ship |
+| AI PM (0→1 PMF · agent infra + product surface) | [`/ai-pm`](.claude/skills/ai-pm/) | Mira the PM | ✅ v0.4.0 ship |
 | Game Art Director / Visual Lead (0→1 ビジュアル定調) | [`/game-art-director`](.claude/skills/game-art-director/) | Vera | ✅ v0.1.0 ship |
 | Generalist UX Research Director | [`/ux-research-director`](.claude/skills/ux-research-director/) | Wren | ✅ v0.1.0 ship |
 | B2B SaaS Content Ops Director (cross-region) | [`/content-ops-director`](.claude/skills/content-ops-director/) | Lin | ✅ v0.1.0 ship |
@@ -265,7 +265,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
     ├── INDEX.md                              # 蒸留済みロールのレジストリ
     ├── luban-skill/                          # メタツール（新ロール生成）
     ├── agents/                               # /agents メタ skill
-    ├── infra-pm/                             # Mira the PM
+    ├── ai-pm/                                # Mira the PM
     ├── game-art-director/                    # Vera
     ├── ux-research-director/                 # Wren
     └── content-ops-director/                 # Lin

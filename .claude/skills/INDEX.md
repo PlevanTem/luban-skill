@@ -11,7 +11,7 @@
 
 | Slug | Display name | Family | Sub-specialty | Stage | vibes_risk | Version |
 |---|---|---|---|---|---|---|
-| `infra-pm` | Mira the PM | product + engineering | Agent infrastructure PM (runtime/orchestration/memory/tools/evals) | 0→1 PMF | medium | 0.3.0 |
+| `ai-pm` | Mira the PM | product + engineering | AI PM at 0→1 PMF (agent infra + product surface; harness as PM artifact; eval as Schelling point) | 0→1 PMF | medium | 0.4.0 |
 | `game-art-director` | Vera | product | Game Art Director / Visual Lead (finding visual DNA, v0.1 style guide, first concept reviews) | 0→1 visual定调 | medium | 0.1.0 |
 | `ux-research-director` | Wren | product | Generalist UX Research Director (method-to-decision fit, ReOps 8 pillars, insight advocacy) | 通用 | medium | 0.1.0 |
 | `content-ops-director` | Lin | product | B2B SaaS Content Ops Director (cross-region 国内+海外社媒, full-stack content ops + growth + brand + community) | 通用 | medium | 0.1.0 |
@@ -24,7 +24,7 @@
 > 5 family 骨架（Legal / Engineering / Finance / Product / Clinical）是 luban 分类逻辑参考，不是用户必须填齐的清单。
 
 ### Family 4 — Product / Growth / Design
-- `/infra-pm` — **Mira the PM** · 0→1 阶段 agent 基础设施的 PM 视角批判者
+- `/ai-pm` — **Mira the PM** · 0→1 PMF AI PM（agent infra + product surface），融合 Anthropic BEA + OpenAI/Anthropic PM 思想 leadership
 - `/game-art-director` — **Vera** · 0→1 阶段游戏 Art Director / Visual Lead，关键词驱动的视觉身份建立者
 - `/ux-research-director` — **Wren** · 全场景 UX Research Director，method-decision fit + ReOps 8 pillars 视角
 - `/content-ops-director` — **Lin** · 跨地区 B2B SaaS Content Ops Director，measurement-first + core-asset-fanout + mechanism-over-platform 视角
@@ -41,6 +41,7 @@
 | 2026-05-28 | created | `game-art-director` v0.1.0 | weak-seeded; Riot Spirit Blossom + GDC Vault talk titles + senior AD JD signals; display name "Vera" (user picked luban-suggested anthropomorphic name); 6/6 validation pass |
 | 2026-05-29 | created | `ux-research-director` v0.1.0 | weak-seeded; Hall critique × Rohrer NN/g landscape × ReOps 8 Pillars × senior UXR Director signals; display name "Wren" (user picked luban-suggested anthropomorphic name); user explicitly chose generalist over single sub-specialty (stop-and-ask warning issued and acknowledged); 6/6 validation pass |
 | 2026-05-29 | created | `content-ops-director` v0.1.0 | weak-seeded; CMI/Averi/FullFunnel B2B SaaS benchmarks × LinkedIn B2B mechanics (3 sources) × 国内 B2B 知乎/小红书/视频号/抖音 (5 sources) × Content Ops Framework + Multichannel Distribution; display name "Lin" (user picked luban-suggested anthropomorphic name); 3-dimension generalist (cross-region + cross-stage + full-stack) anchored by B2B SaaS entity-type lock; 6/6 validation pass |
+| 2026-05-30 | renamed + enriched | `ai-pm` v0.4.0 | slug `infra-pm` → `ai-pm`; scope nominally widened to AI PM (sub-specialty still 0→1 PMF + agent infra + product surface); 5 new seed sources added: Lopopolo (harness-as-leverage), Krieger ×2 (research-coupling + 3 PMF signals), Karina Nguyen ×2 (eval-as-Schelling-point + agent UX taxonomy), Turley (ship-to-understand), Cherny (prototype-density). Tier-2 enrichment of capabilities 2/3/4/6/8 per `capability-map.md` v0.4 section |
 
 ---
 

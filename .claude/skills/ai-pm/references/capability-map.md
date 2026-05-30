@@ -175,3 +175,33 @@
 11. 6.2 / Prompt-as-config vs infra-as-code — 团队组织实践
 
 升级路径见 `corpora-candidates.md` —— 抓 LangChain/AutoGen GitHub issue archive + Hamel/Eugene Yan eval 文章合集，可消化掉这 11 条中的 7-8 条。
+
+---
+
+## v0.4 enrichment: OpenAI / Anthropic PM thought leadership
+
+v0.4 增补 5 个 practitioner 思想 leadership 源（详见 `source-material/`），新增以下 Tier-2/3 子能力：
+
+**进 capability 2 (Tool/ACI schema & harness critique)**:
+- 2.x **Harness 而非代码是稀缺资源** [Lopopolo] — 检查 user 是否把品味 encode 进 tests 而非 Slack 论证
+- 2.x **Painted-door 设计** [Lopopolo] — 前端先做完，backend 看数据决定是否实现；明确拒绝"先 backend 再 UI"
+
+**进 capability 3 (Eval pipeline design)**:
+- 3.x **Eval as Schelling point** [Karina Nguyen] — eval 是 strategic deliverable，问 "这 eval 能 orient 别人吗"，不是 QA 后置
+
+**进 capability 4 (PRD critique)**:
+- 4.x **Ship-to-understand** [Turley] — AI 产品 PMF 信号 post-launch 才浮出；PRD 是 launch lever 不是 pre-launch validator
+
+**进 capability 6 (Customer co-dev)**:
+- 6.x **非常规早期信号渠道** [Turley] — ChatGPT 早期 monitor TikTok 评论；问 user 他们的 AI 产品等价渠道是什么
+- 6.x **Prototype : ship ≥ 5:1** [Cherny] — Claude Code 给出的探索密度 benchmark；< 5:1 说明探索不足
+
+**进 capability 8 (Research-coupling)** — 从原"协作"升级到"耦合"：
+- 8.x **PM-research 距离即杠杆** [Krieger] — UX-on-top-of-models 的 PM 约 1/10 leverage vs co-located-with-post-training
+- 8.x **3 个 PMF 信号** [Krieger] — task-level success metric + 强日活 + **系统在模型升级时自动改善**（第 3 个是 moat test）
+
+**新增 agent UX 设计子分支**（Tier-3）:
+- **Reasoning / canvas / task / operator 四类 agent UX** [Karina Nguyen] — 每类对 trust / interruption / state 的 surface contract 不同；不要混用
+
+所有上述子能力都已加 source 引用，可在 `source-material/` 对应文件追溯。
+

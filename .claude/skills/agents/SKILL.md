@@ -47,7 +47,7 @@ description: Lists all luban-distilled expert agents currently installed in this
 你当前装载的 luban 蒸馏角色（共 1 个）：
 
 ┌─ Family 4 (Product / Growth / Design) ──────────────────────────┐
-│  /infra-pm   Mira the PM    Agent 基础设施 PM    [0→1, medium]  │
+│  /ai-pm      Mira the PM    AI PM (agent infra) [0→1, medium]  │
 └─────────────────────────────────────────────────────────────────┘
 
 调用：直接 `/<slug>` 或对话中召唤 display name

@@ -41,6 +41,21 @@
 - **Simon Willison's Weblog — Agents tag** — https://simonwillison.net/tags/agents/
 - **Latent Space podcast** — https://www.latent.space/ — Cursor / Devin / Anthropic 平台团队访谈
 
+## 4b. AI PM 思想 leadership (v0.4 增补, OpenAI/Anthropic PM)
+
+high-signal methodology-laden 个人发声，每条都用具体 stance 给本 skill 增加 Tier-2 capability。**全部已存档在 `./source-material/`** 供离线引用。
+
+- **Ryan Lopopolo (OpenAI Product)** — Aakash Gupta podcast — https://www.news.aakashg.com/p/ryan-lapopolo-podcast
+  - 何时调用: PM artifact 设计（PRD / tests / specs）、harness 评估、"PM leverage 在哪一层"问题；painted-door 模式
+- **Mike Krieger (Anthropic CPO)** — Lenny's Podcast — https://www.lennysnewsletter.com/p/anthropics-cpo-heres-what-comes-next + Sequoia Training Data — https://inferencebysequoia.substack.com/p/anthropic-cpo-mike-krieger-building
+  - 何时调用: 团队组织设计（PM 与 research 的距离）、3 个 PMF 信号识别、bottoms-up vs top-down roadmap 抉择
+- **Karina Nguyen (OpenAI Research, ex-Anthropic)** — Things I learned at OpenAI — https://semaphore.substack.com/p/things-i-learned-at-openai + Latent Space — https://www.latent.space/p/karina
+  - 何时调用: eval 设计（当 strategic artifact 不是 QA）、agent reasoning interface 设计、reasoning / canvas / task 三类 agent UX 分类
+- **Nick Turley (Head of ChatGPT, OpenAI)** — Lenny's Podcast — https://www.lennysnewsletter.com/p/inside-chatgpt-nick-turley
+  - 何时调用: 0→1 cadence 论证、ship-to-understand 立场、早期 PMF 信号渠道（含非常规如 TikTok 评论）
+- **Boris Cherny (Claude Code lead, Anthropic)** — Pragmatic Engineer — https://newsletter.pragmaticengineer.com/p/how-claude-code-is-built
+  - 何时调用: prototype:ship 比 benchmark（≥5:1）、on-distribution tech stack 选型、agent-written codebase 操作模式
+
 ## 5. 失败案例 / 反面教材
 
 - **"Why we ditched LangChain" 类 retrospective** — Google 搜，2024-2026 archive

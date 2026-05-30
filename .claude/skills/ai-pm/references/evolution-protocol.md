@@ -71,5 +71,5 @@
 如果用户希望角色行为偏离当前 sub-specialty（例如从 0→1 扩展到 scale 阶段）：
 
 - **不要**通过 evolution 扩展能力范围 —— 这会让 anchor 失稳
-- **应该**建议用户用 luban 重新生成一个 sibling role（例如 `infra-pm-scale`），共享部分 references/source-material/ 但独立 identity.json
+- **应该**建议用户用 luban 重新生成一个 sibling role（例如 `ai-pm-scale`），共享部分 references/source-material/ 但独立 identity.json
 - sibling role 之间可以在 SKILL.md 的"何时不使用本角色"段互相 cross-reference

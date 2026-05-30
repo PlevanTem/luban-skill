@@ -188,7 +188,7 @@
       <circle cx="42" cy="11" r="4" fill="#10B981"/>
 
       <text x="14" y="50" class="term-out">$</text>
-      <text x="30" y="50" class="term-cmd">/infra-pm</text>
+      <text x="30" y="50" class="term-cmd">/ai-pm</text>
       <text x="108" y="50" class="term-out">design my eval pipeline</text>
 
       <text x="14" y="82" class="term-name">◆ Mira:</text>

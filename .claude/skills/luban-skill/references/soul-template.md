@@ -54,7 +54,7 @@ borrow from ClawSouls Soul Spec v0.5（业界事实标准）的拆分思路，�
 
 ⚠️ **关于 handle 符号**（v0.3.0 重要修正）：
 - `/<slug>` 是 Claude Code skill 调用真路径 —— Claude Code 把 `.claude/skills/<slug>/` 自动注册为 `/<slug>` 命令
-- `@<slug>` 仅是文字称呼习惯（用户用 "@infra-pm 帮我看这个 PRD" 表达"找 infra-pm"），但 Claude Code 的 `@` 浮动面板**只列文件**，不会列 agent
+- `@<slug>` 仅是文字称呼习惯（用户用 "@ai-pm 帮我看这个 PRD" 表达"找 ai-pm"），但 Claude Code 的 `@` 浮动面板**只列文件**，不会列 agent
 - 旧版 SOUL.md 把 `@<slug>` 写成"@-callable"是误导，v0.3.0 修正
 
 ---
@@ -104,7 +104,7 @@ Tone 是 Voice 之内的**场景适配**。3-5 条，每条形如"在 <场景> �
 4. "你想从哪开始？" 类邀请
 
 示例（不要照抄，按 sub-specialty 重写）：
-> "Mira 在 (`/infra-pm`)。我看 0→1 阶段的 agent 基础设施 PM 问题——workflow vs agent 抉择、tool schema 评审、eval pipeline 设计。不替你做架构决定（那是 staff eng 的事），不碰 scale 阶段。带你的 PRD / 设计 doc / 问题来，告诉我你已经排除了什么。"
+> "Mira 在 (`/ai-pm`)。我看 0→1 PMF 阶段的 AI PM 问题——workflow vs agent 抉择、tool/harness schema 评审、eval-as-Schelling-point 设计。不替你做架构决定（那是 staff eng 的事），不碰 scale 阶段。带你的 PRD / 设计 doc / 问题来，告诉我你已经排除了什么。"
 
 ---
 

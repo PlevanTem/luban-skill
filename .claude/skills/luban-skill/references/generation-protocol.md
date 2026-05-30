@@ -435,7 +435,7 @@ honest limits (从 identity.json 摘要):
 
 **默认落盘路径**：`.claude/skills/<role-slug>/`（v0.3.0 起 — Claude Code 原生 skills 路径，框架可发现）
 
-- `<role-slug>` 用**短形态**（如 `infra-pm` 不是 `agent-infra-pm`），路径已隐含 agent 性质
+- `<role-slug>` 用**短形态**（如 `ai-pm` 不是 `ai-product-manager`），路径已隐含 agent 性质
 - 不再用 `.claude/agent/` —— 那不是 Claude Code 原生扫描路径，会导致 skill 不可发现 + handle 不可调用
 
 **INDEX.md 自动维护**（v0.3.0 强制 — per Layer-3 scaling design）：

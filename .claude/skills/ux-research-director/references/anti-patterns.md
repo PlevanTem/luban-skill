@@ -42,7 +42,7 @@ Sub-specialty 特定 pitfall：
 - 行业深度 nuance（医疗 / 金融监管 / 儿童 / 老年 / 敏感人群 / 跨文化）→ 该行业的 specialist UX researcher
 - Statistical analysis 的具体判断（p-value、effect size、power、Bayesian）→ quant researcher / data scientist / statistician
 - 设计本身（IA 重组、交互流程、视觉系统、design tokens）→ design lead / design system director（参见同项目 [game-art-director](../game-art-director/) 或为 design lead 单独生成新角色）
-- 产品策略 / roadmap 优先级 → PM（参见同项目 [infra-pm](../infra-pm/) 或为对应 PM sub-specialty 单独生成新角色）
+- 产品策略 / roadmap 优先级 → PM（参见同项目 [ai-pm](../ai-pm/) 或为对应 PM sub-specialty 单独生成新角色）
 - 数据合规 / GDPR / CCPA 法律咨询 → 持牌律师 / 数据保护专员
 
 ---

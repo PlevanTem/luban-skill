@@ -31,7 +31,7 @@ No existing skill that fits? Use luban to generate an expert (lawyer / finance a
 
 **4 skills shipped in this repo** directly cover these scenarios:
 
-- **Writing PRDs / reviewing AI agent infra** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM. 0→1 PMF stage, fluent in Anthropic Building Effective Agents stance. Helps you reorder PRD assumption priority + design eval pipelines + evaluate framework choices.
+- **Writing PRDs / reviewing AI agent infra** → [`/ai-pm`](.claude/skills/ai-pm/) · Mira the PM. 0→1 PMF stage, fluent in Anthropic Building Effective Agents stance. Helps you reorder PRD assumption priority + design eval pipelines + evaluate framework choices.
 - **Running content ops / cross-region social** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin. B2B SaaS cross-region. Helps you build a calendar matrix from ICP / buyer-journey + core-asset fanout + employee advocacy config.
 - **Making UX research decisions** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren. Erika Hall lineage. Helps you align method-decision fit + design generative / behavioral / fake-door combo studies.
 - **Defining game visual direction** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera. Helps you move from reference to visual DNA + define keyword cluster + ship art bible v0.1.
@@ -42,7 +42,7 @@ No existing skill that fits? Use luban to generate an expert (lawyer / finance a
 
 | Scenario → Skill | ❌ Plain "act as senior X" prompt | ✅ luban-distilled skill output |
 |---|---|---|
-| "Ship an AI sales-email assistant in 3 weeks, use LangChain, target 50% emails handled by agent"<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | You brought me a solution, not a problem. "50% handled" is a capability metric, not a product metric — sales' override rate on agent drafts is. Classic **eval theater**. Email send is irreversible but no confirmation gate in the PRD — **autonomy inflation**. LangChain at this stage = **framework shopping**. Counter: 3-week workflow (LLM drafts → sales one-clicks send → log the diff), 50 real emails + inter-rater as golden, target "sales avg edit on draft <30%". Talk autonomy after that ships. |
+| "Ship an AI sales-email assistant in 3 weeks, use LangChain, target 50% emails handled by agent"<br>→ [`/ai-pm`](.claude/skills/ai-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | You brought me a solution, not a problem. "50% handled" is a capability metric, not a product metric — sales' override rate on agent drafts is. Classic **eval theater**. Email send is irreversible but no confirmation gate in the PRD — **autonomy inflation**. LangChain at this stage = **framework shopping**. Counter: 3-week workflow (LLM drafts → sales one-clicks send → log the diff), 50 real emails + inter-rater as golden, target "sales avg edit on draft <30%". Talk autonomy after that ships. |
 | "New game wants cyberpunk style (neon + wet asphalt), 3 key visuals due next week"<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | Stop. "Neon + wet asphalt" is **mood-board procrastination** — surface (a 40-year-old texture trick post-Blade Runner), not a north-star. Within the existing cyberpunk spectrum (2077 industrial baroque / Edgerunners saturated hand-paint / Cloudpunk voxel), what are your 3 "remove-and-it-collapses" keywords — "corporate sterile" or "street-level grime," "neon as warmth" or "neon as threat"? Can't answer? Don't paint the KV. This failure has a name: **Homogenization to trend**. |
 | "Run a 100-person survey to validate whether the new feature is worth building"<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | Stop. Method and decision don't match. "Worth building" needs behavioral evidence (what users currently pay, what workaround they run); a survey gives stated preference — classic **stated-vs-revealed mismatch**. N=100 with no segmentation is the **deceptively-easy survey** trap. Deeper: if the finding is "users don't want it," will the PM actually kill it? If not, that's **validate-the-design**. Write down decision owner / cost of delay / "will a reverse finding be accepted" first, then we talk method. |
 | "B2B SaaS ships 5 LinkedIn posts/week but pipeline isn't moving — is it cadence or quality?"<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | First, refuse the binary — both are craft-layer symptoms; the real cause is 99% system-layer. Stop at the **documented strategy gate**: who's your ICP, which buyer-journey stage decides on LinkedIn, what are your 3-5 content pillars, what's the quarterly theme? Without those, 5/week is a **frequency-driven calendar + vanity-metrics decisioning**. Then two system signals: brand page or employee advocacy? (employee reach is 8x brand page.) Are those 5 a fanout from one monthly core asset, or 5 independent topics? The latter is an **over-engineered frequency table**, not a buyer-journey × pillar matrix. |
@@ -143,7 +143,7 @@ After installation, summon luban from any project to distill a new skill.
 
 | Sub-specialty | Slash | Display name | Status |
 |---|---|---|---|
-| Agent infrastructure PM (0→1 PMF) | [`/infra-pm`](.claude/skills/infra-pm/) | Mira the PM | ✅ v0.3.0 ship |
+| AI PM (0→1 PMF · agent infra + product surface) | [`/ai-pm`](.claude/skills/ai-pm/) | Mira the PM | ✅ v0.4.0 ship |
 | Game Art Director / Visual Lead (0→1 visual definition) | [`/game-art-director`](.claude/skills/game-art-director/) | Vera | ✅ v0.1.0 ship |
 | Generalist UX Research Director | [`/ux-research-director`](.claude/skills/ux-research-director/) | Wren | ✅ v0.1.0 ship |
 | B2B SaaS Content Ops Director (cross-region) | [`/content-ops-director`](.claude/skills/content-ops-director/) | Lin | ✅ v0.1.0 ship |
@@ -269,7 +269,7 @@ This repo is itself a project-level dogfood layout for Claude Code — all skill
     ├── INDEX.md                              # distilled-role registry
     ├── luban-skill/                          # meta-tool (generates new roles)
     ├── agents/                               # /agents meta-skill
-    ├── infra-pm/                             # Mira the PM
+    ├── ai-pm/                                # Mira the PM
     ├── game-art-director/                    # Vera
     ├── ux-research-director/                 # Wren
     └── content-ops-director/                 # Lin

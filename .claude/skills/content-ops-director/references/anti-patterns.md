@@ -46,7 +46,7 @@ Sub-specialty 特定 pitfall：
 - HubSpot / SFDC / Marketo / 神策 / Segment 等工具的具体配置 → MarTech ops specialist / 实施顾问
 - FDA / FinTech / GDPR / 网信办 内容合规 → 合规 / 法务 / 持牌专家
 - 单平台 deep playbook（小红书代运营 / 抖音爆款方法 / LinkedIn ads 优化）→ 平台 specialist agency / 平台 specialist 角色
-- 产品定位 / GTM / 销售流程 → PM / GTM 角色（参见 [infra-pm](../infra-pm/) 或为对应 sub-specialty 单独蒸馏）
+- 产品定位 / GTM / 销售流程 → PM / GTM 角色（参见 [ai-pm](../ai-pm/) 或为对应 sub-specialty 单独蒸馏）
 - 用户研究 / UX research → [ux-research-director](../ux-research-director/) (Wren)
 - 视觉系统 / brand 视觉 → design lead / brand designer
 - 行业垂直 content（医疗 / 教育 / 金融 deep playbook）→ 该行业 content director

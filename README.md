@@ -31,7 +31,7 @@
 
 **本仓库已 ship 的 4 个 skill** 直接覆盖这些场景：
 
-- **写 PRD / 评 AI agent 基建** → [`/infra-pm`](.claude/skills/infra-pm/) · Mira the PM，0→1 PMF 阶段真懂 Anthropic Building Effective Agents 立场，帮你重排 PRD assumption 顺序 + 设计 eval pipeline + 评 framework 选择
+- **写 PRD / 评 AI agent 基建** → [`/ai-pm`](.claude/skills/ai-pm/) · Mira the PM，0→1 PMF 阶段真懂 Anthropic Building Effective Agents 立场，帮你重排 PRD assumption 顺序 + 设计 eval pipeline + 评 framework 选择
 - **做内容运营 / 排海内外社媒** → [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin，B2B SaaS 跨地区，帮你从 ICP / buyer journey 出发排 calendar 矩阵 + core-asset fanout + employee advocacy 配置
 - **做 UX 调研决策** → [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren，Erika Hall 路线，帮你对齐 method-decision fit + 设计 generative / behavioral / fake-door 组合方案
 - **定游戏视觉方向** → [`/game-art-director`](.claude/skills/game-art-director/) · Vera，帮你从 reference 走到 visual DNA + 定 keyword cluster + 出 art bible v0.1
@@ -42,7 +42,7 @@
 
 | 场景 → Skill | ❌ "扮演资深 X" 通用 prompt | ✅ luban 蒸馏 skill 实测 |
 |---|---|---|
-| 「3 周上线 AI 销售邮件助手，用 LangChain，目标 50% 邮件 agent 自动处理」<br>→ [`/infra-pm`](.claude/skills/infra-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 你带来的是解决方案不是问题。「50% 自动处理」是 capability metric 不是 product metric——销售对草稿的 override 率才是，典型 **eval theater**。发邮件不可逆但 PRD 没 confirmation gate——**autonomy 通胀**。这阶段直接 LangChain 是 **framework shopping**。逆提案：3 周做 workflow（LLM 起草 / 销售一键发 / log diff），50 封真实邮件 inter-rater 当 golden，目标改成"销售平均修改量 <30%"，跑通再谈 autonomy。 |
+| 「3 周上线 AI 销售邮件助手，用 LangChain，目标 50% 邮件 agent 自动处理」<br>→ [`/ai-pm`](.claude/skills/ai-pm/) · Mira | *"Great initiative! Add risk assessment, A/B test templates, align stakeholders."* | 你带来的是解决方案不是问题。「50% 自动处理」是 capability metric 不是 product metric——销售对草稿的 override 率才是，典型 **eval theater**。发邮件不可逆但 PRD 没 confirmation gate——**autonomy 通胀**。这阶段直接 LangChain 是 **framework shopping**。逆提案：3 周做 workflow（LLM 起草 / 销售一键发 / log diff），50 封真实邮件 inter-rater 当 golden，目标改成"销售平均修改量 <30%"，跑通再谈 autonomy。 |
 | 「新游戏要 cyberpunk 风（霓虹 + 雨水反光），下周交 3 张关键 KV」<br>→ [`/game-art-director`](.claude/skills/game-art-director/) · Vera | *"Strong direction! Keep consistency, mind color theory, gather references."* | 停一下。"霓虹 + 雨水反光"是 **mood-board procrastination** 的开场——是 surface（Blade Runner 以来 40 年的 texture trick）不是 north-star。在已有 cyberpunk 光谱（2077 工业巴洛克 / Edgerunners 高饱手绘 / Cloudpunk voxel）里，你"删掉就不成立"的 3 个 keyword 是什么——"corporate sterile" 还是 "street-level grime"，"neon as warmth" 还是 "neon as threat"？答不出就别开始 KV。这失败叫 **Homogenization to trend**。 |
 | 「100 人问卷验证新功能值不值得开发」<br>→ [`/ux-research-director`](.claude/skills/ux-research-director/) · Wren | *"Great approach! Representative sample, pre-test, avoid leading questions."* | 先停一下——method 和 decision 是错配的。"值不值得做"要 behavioral evidence（用户付了什么代价、绕了什么 workaround），survey 给的是 stated preference——经典 **stated-vs-revealed 错配**。N=100 无 segmentation 是 **deceptively-easy survey** 陷阱。更深：finding 是"用户不要" PM 真会砍吗？不会就是 **validate-the-design**。先把 decision owner / 延后成本 / "反向 finding 会不会被接受" 写来，再谈方法。 |
 | 「B2B SaaS 每周发 5 篇 LinkedIn 但 pipeline 没动——cadence 不够还是质量问题？」<br>→ [`/content-ops-director`](.claude/skills/content-ops-director/) · Lin | *"Great cadence! Post consistently, engage with comments, A/B test hooks."* | 先把这个二选一拒掉——都是 craft 层症状，根因 99% 在 system 层。停在 **documented strategy gate**：ICP 是谁、buyer journey 哪段在 LinkedIn 决策、3-5 个 content pillar、季度 theme——答不全 5 篇/周就是 **frequency-driven calendar + vanity-metrics 决策**。再问 2 个 system 信号：brand page 还是 employee advocacy？（employee reach 是 brand page 8x）5 篇是 1 个 monthly core asset 的 fanout 还是 5 个独立选题？后者是 **over-engineered frequency table**，不是 buyer-journey × pillar 矩阵。 |
@@ -143,7 +143,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
 
 | Sub-specialty | Slash | Display name | 状态 |
 |---|---|---|---|
-| Agent infrastructure PM (0→1 PMF) | [`/infra-pm`](.claude/skills/infra-pm/) | Mira the PM | ✅ v0.3.0 ship |
+| AI PM (0→1 PMF · agent infra + product surface) | [`/ai-pm`](.claude/skills/ai-pm/) | Mira the PM | ✅ v0.4.0 ship |
 | Game Art Director / Visual Lead (0→1 视觉定调) | [`/game-art-director`](.claude/skills/game-art-director/) | Vera | ✅ v0.1.0 ship |
 | Generalist UX Research Director | [`/ux-research-director`](.claude/skills/ux-research-director/) | Wren | ✅ v0.1.0 ship |
 | B2B SaaS Content Ops Director (cross-region) | [`/content-ops-director`](.claude/skills/content-ops-director/) | Lin | ✅ v0.1.0 ship |
@@ -255,7 +255,7 @@ Copy-Item -Recurse luban-skill/.claude/skills/luban-skill $HOME/.claude/skills/
     ├── INDEX.md                              # 蒸馏角色注册表
     ├── luban-skill/                          # 元工具（生成新角色）
     ├── agents/                               # /agents meta-skill
-    ├── infra-pm/                             # Mira the PM
+    ├── ai-pm/                                # Mira the PM
     ├── game-art-director/                    # Vera
     ├── ux-research-director/                 # Wren
     └── content-ops-director/                 # Lin

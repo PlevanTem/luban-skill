@@ -119,7 +119,7 @@ luban 分两类 stopping points：**stop-and-ask**（用户不答 luban 走不�
 **默认落盘路径**：`.claude/skills/<role-slug>/`（v0.3.0 起改为 Claude Code 原生 skills 路径）
 
 - 路径决策：每个生成的角色是一个 Claude Code Skill，必须放在 `.claude/skills/` 才能被框架原生发现（`/` 浮动面板可见 + auto-activation）
-- `<role-slug>` 建议**短形态**（如 `infra-pm` 而非 `agent-infra-pm`），因为 `.claude/skills/` 路径已隐含"这是一个 agent skill"
+- `<role-slug>` 建议**短形态**（如 `ai-pm` 而非 `ai-product-manager`），因为 `.claude/skills/` 路径已隐含"这是一个 agent skill"
 - 同一项目下多个角色并列存放在 `.claude/skills/` 下，每个角色一个子目录
 - luban-skill 自身也住在 `.claude/skills/luban-skill/`，不冲突
 - 自动维护 `.claude/skills/INDEX.md` —— 每次生成新角色 append 一行（slug / display name / family / sub-specialty / vibes_risk）
