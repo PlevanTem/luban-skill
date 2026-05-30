@@ -188,21 +188,22 @@
 
       <text x="14" y="50" class="term-out">$</text>
       <text x="30" y="50" class="term-cmd">/infra-pm</text>
+      <text x="108" y="50" class="term-out">eval pipeline を設計</text>
 
       <text x="14" y="82" class="term-name">◆ Mira:</text>
 
-      <text x="14" y="104" class="term-out">「feature の羅列で、</text>
-      <text x="14" y="124" class="term-out">assumption-first ではない。</text>
-      <text x="14" y="144" class="term-out">いきなり LangChain は</text>
-      <text x="14" y="164" class="term-out">Anthropic BEA の核心：</text>
-      <text x="14" y="184" class="term-out">workflow を agent より優先 に反する。</text>
-      <text x="14" y="208" class="term-out">3 週間 + eval pipeline 不在</text>
-      <text x="14" y="228" class="term-out">= eval theater。」</text>
+      <text x="14" y="104" class="term-out">BEA workflow-first：</text>
+      <text x="14" y="124" class="term-out">① LLM 起草 → sales が</text>
+      <text x="14" y="144" class="term-out">  ワンクリック送信</text>
+      <text x="14" y="164" class="term-out">② 実メール 50 件 +</text>
+      <text x="14" y="184" class="term-out">  inter-rater = golden</text>
+      <text x="14" y="208" class="term-out">③ override 率 &lt;30%</text>
+      <text x="14" y="228" class="term-out">  通過後 scope 拡張。</text>
 
       <rect x="14" y="248" width="8" height="14" fill="#E5E7EB" opacity="0.7"/>
     </g>
 
-    <text x="200" y="412" text-anchor="middle" class="footer-lbl">Claude Code 内 · 専門家視点の批判、定型句ではなく</text>
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">Claude Code 内 · 方法論ベースの協作、定型句ではなく</text>
   </g>
 
   <!-- ====== Bottom tagline ====== -->

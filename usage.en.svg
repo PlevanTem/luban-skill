@@ -189,21 +189,22 @@
 
       <text x="14" y="50" class="term-out">$</text>
       <text x="30" y="50" class="term-cmd">/infra-pm</text>
+      <text x="108" y="50" class="term-out">design my eval pipeline</text>
 
       <text x="14" y="82" class="term-name">◆ Mira:</text>
 
-      <text x="14" y="104" class="term-out">"Feature dump, not</text>
-      <text x="14" y="124" class="term-out">assumption-first. Jumping</text>
-      <text x="14" y="144" class="term-out">to LangChain orchestration</text>
-      <text x="14" y="164" class="term-out">violates Anthropic BEA:</text>
-      <text x="14" y="184" class="term-out">workflow before agent.</text>
-      <text x="14" y="208" class="term-out">3 weeks + no eval pipeline</text>
-      <text x="14" y="228" class="term-out">= eval theater."</text>
+      <text x="14" y="104" class="term-out">BEA workflow-first:</text>
+      <text x="14" y="124" class="term-out">① LLM drafts → sales</text>
+      <text x="14" y="144" class="term-out">  one-clicks send</text>
+      <text x="14" y="164" class="term-out">② 50 real emails +</text>
+      <text x="14" y="184" class="term-out">  inter-rater = golden</text>
+      <text x="14" y="208" class="term-out">③ override rate &lt;30%</text>
+      <text x="14" y="228" class="term-out">  → expand scope.</text>
 
       <rect x="14" y="248" width="8" height="14" fill="#E5E7EB" opacity="0.7"/>
     </g>
 
-    <text x="200" y="412" text-anchor="middle" class="footer-lbl">In Claude Code · expert-grade critique, not generic answers</text>
+    <text x="200" y="412" text-anchor="middle" class="footer-lbl">In Claude Code · methodology-led collaboration, not generic answers</text>
   </g>
 
   <!-- ====== Bottom tagline ====== -->
